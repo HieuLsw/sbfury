@@ -1,5 +1,6 @@
 import os
 from PySFML import sf
+import sheet
 
 def load_image(filename):
     "Genera un objeto Image a partir de la ruta indicada."
@@ -14,3 +15,7 @@ def load_image(filename):
 
 
 
+def load_sheet(filename, cols=1, rows=1):
+    image = load_image(filename)
+    image_sheet = sheet.ImageSheet(image, cols, rows)
+    return image_sheet
