@@ -1,2 +1,3 @@
 import sbfury
+
 sbfury.main()
