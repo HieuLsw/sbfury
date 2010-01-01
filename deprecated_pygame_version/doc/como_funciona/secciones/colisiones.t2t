@@ -1,0 +1,54 @@
+Colisiones
+Hugo Ruscitti
+0.1
+
+= Colisiones =
+
+== Resumen ==
+
+Las colisiones permiten crear reacciones a los golpes y movimientos de todos
+los personajes del juego. Esta sección explica como funcionan las colisiones
+con objetos, enemigos y el protagonista.
+
+
+== Atributos que intervienen ==
+
+Las colisiones se verifican en base a rectángulos internos a cada instancia de
+objeto. La siguiente imágen muestra el nombre y representación visual de cada
+uno de estos rectángulos:
+
+ [ima/collision.png] 
+
+== Métodos ==
+
+En la clase 'Player' existen varios métodos que realizan cálculos para
+determinar colisiones:
+
+
+  - get_collision_receive() - informa si el personaje 'recibe' un golpe de otro personaje en la lista `enemies` de su propia instancia.
+
+  - get_collision_send() - informa 'True' si el personaje está golpeando en ese instante a otro. Esto es útil cuando el personaje quiea incrementar su puntaje con cada golpe o mostrar una animación diferente cuando concreta un golpe.
+
+  - set_collision() - se debe llamar para generar una rectángulo emisor de colisión. Por ejemplo, al momento de recibir el evento de la tecla 'golpear'.
+
+  - unset_collision() - realiza el trabajo inverso al método `set_collision`, es decir, elimina el rectángulo que emite colisión.
+
+
+A su vez, los objetos de la clase //Enemy//, tienen métodos similares para
+determinar si el jugador los está golpeando:
+
+  - get_collision_receive() - determina si el protagonista lo está golpeando.
+    También existe una variable //sensitive// que indica si el enemigo puede
+    recibir golpes en ese momento.
+
+
+== ¿Quien verifica colisiones? ==
+
+Toda colisión se produce entre dos sprites, pero quién determina el
+//primer contacto// es el objeto receptor. Por ejemplo, el personaje del juego consulta
+en todo momento si alguien lo está golpeando. De igual forma los objetos del
+nivel (cajas, barriles ...) verifican constantemente cualquier tipo de
+colisión con ellos.
+
+
+

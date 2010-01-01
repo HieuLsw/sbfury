@@ -1,0 +1,27 @@
+Debug
+Hugo Ruscitti
+0.1
+
+= Debug =
+
+== Resumen ==
+
+En el módulo //common// existen varias constantes que se pueden habilitar para
+observar en pantalla posibles errores:
+
+  - VISIBLE_DEBUG : muestra información geométrica de colisiones o límites, es
+    útil para corroborar que esta información (invisible) corresponde con los
+    gráficos del juego.
+
+  - DEBUG : imprime por el terminal distintas verificaciones o pruebas
+    básicas. Toda prueba, aunque sea temporal, se debería poder desactivar
+    mediante esta variable.
+
+Veamos un ejemplo donde se utiliza esta constante:
+
+```
+if common.DEBUG:
+    print "alguna prueba..."
+```
+
+

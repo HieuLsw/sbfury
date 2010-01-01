@@ -1,0 +1,39 @@
+dom ene 13 10:20:03 ART 2008
+    - incorporación de 'epydoc' como sistema de documentación.
+    - primer implementación de un editor de niveles.
+    - soporte para pisar cajas y otros objetos.
+    - mejoras en el control de teclado (soporte alternativo al estilo VI/VIM).
+    - efecto de corte diagonal en el intercambio de escenas implementado.
+    - BUG Resuelto: se puede sujetar al personaje en dos direcciones.
+    - BUG Resuelto: el usuario ahora puede controlar levemente un salto.
+
+dom oct 21 01:43:37 ART 2007
+    - primer implementación de multiples capas en el desplazamiento de pantalla.
+    - mas gráficos para el enemigo.
+    - primer versión del modo de resolución bajo "320x240".
+    - primer versión de AI en enemigos.
+
+lun oct 15 14:34:26 ART 2007
+    - nombramos al juego "Shaolin's Blind Fury"
+    - incorporamos los nuevos gráficos del personaje principal.
+    - cambiamos el codename del proyecto, antes 'street', ahora 'shaolin'.
+    - mejoras en la toma de enemigos.
+    - mas graficos para el enemigo.
+    - nuevo efecto de cámara al momento de lanzar a los enemigos.
+    - nuevos sonidos.
+    - indicador de cuadros por segundo.
+
+dom jun 17 19:29:42 ART 2007
+    - Implementados los estados de "toma", "golpe" y "arrojar enemigo".
+    - Organización del directorio 'data', separando 'enemigos' de directorio.
+    - Se translada la creación de enemigos a la clase "stage".
+    - Se añade un tiempo límite al golpe aereo del protagonista.
+
+dom abr 29 11:08:21 ART 2007
+    - Se adopta el esquema de directorios propuesto en "pyweek".
+    - Implementación de la escena "game" y "world".
+
+mar mar 20 04:52:06 ART 2007
+    - Definición y documentación de los cuadros de animación.
+    - Cambio de resoluciones.
+    - Inicio del proyecto.

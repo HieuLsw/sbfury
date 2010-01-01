@@ -1,0 +1,2 @@
+Los parámetros de configuración se encuentran en la clase Options. Una
+instancia única de esta clase se puede encontrar dentro de World.

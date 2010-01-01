@@ -1,0 +1,66 @@
+Estados
+
+Introducción
+------------
+
+Cada personaje puede realizar diferentes acciones: correr, saltar, caminar. Cada
+una de estas acciones recibe el nombre de 'estado'.
+
+En este videojuego se necesita implementar una gran cantidad de estados por
+personaje. Por lo tanto he decidido implementar la gestión de estados mediante
+el patrón de diseño "State Pattern". Este patrón consiste en implementar el
+comportamiento de cada estado en una clase individual, de forma tal que la
+transición entre un estado y otro sea dinámica.
+
+Por ejemplo, el personaje principal del juego, Player, contiene una variable
+llamada 'state' que referencia al estado actual del personaje. Cuando el
+personaje debe ser actualizado, el mismo personaje delega esta tarea a su estado
+actual
+
+    #Personaje
+
+    def update(...):
+        self.state.update()
+
+De esta forma, con solo cambiar el objeto referenciado por el atributo 'state'
+el personaje se comporta de forma diferente. Un estado se debe construir a
+partir de la clase State:
+    
+    #State
+
+    def __init__(self, player):
+        ...
+
+    def update(self):
+        ...
+
+y debe re-definir el método `update`, desde donde tendrá acceso al personaje del
+juego desde el atributo `player`.
+
+
+Cambios de estado:
+------------------
+
+Si se quiere implementar una cambios de estado en una personaje se debe llamar
+al método "change_estate" de la clase "Player" y enviarle como parámetro una
+instancia del nuevo estado.
+
+Por ejemplo, si queremos que el estado `Parado` le permita al usuario transitar
+al estado `saltar` o `caminar` mediante las teclas `up`, `left` o `right`:
+    
+    #Parado
+
+    def __init__(self, player):
+        State.__init__(self, player)
+
+    def update(self):
+        
+        if self.player.control.up:
+            self.player.change_state(Saltar(self.player))
+
+        if self.player.control.left or self.player.control.right:
+            self.player.change_state(Caminar(self.player))
+
+recordar que cada instancia de estado necesita una referencia al personaje que
+debe manipular. Esto posibilita que cada método `update` de un estado pueda
+ordenar un cambio de estado y manipular al personaje.
