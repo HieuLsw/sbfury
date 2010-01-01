@@ -2,6 +2,9 @@ from PySFML import sf
 import sys
 import common
 
+import shaolin
+
+
 app = sf.RenderWindow()
 app.Create(sf.VideoMode(720, 480), "sbfury")
 app.SetPosition(300, 200)
@@ -16,14 +19,14 @@ color = sf.Color(200, 200, 200)
 app.UseVerticalSync(True)
 
 
-image = common.load_sheet("../data/shaolin/stand.png", 4, 1)
-sprite = sf.Sprite(image.image)
-image.Assign(sprite)
+player = shaolin.Shaolin()
 
 while True:
     dt = app.GetFrameTime()
     app.Clear(color)
-    app.Draw(sprite)
+    app.Draw(player)
+
+    player.update(dt)
 
     while app.GetEvent(event):
 
