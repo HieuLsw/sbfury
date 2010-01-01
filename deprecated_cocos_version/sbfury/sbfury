@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+import sys
+import os
+
+dirname = os.path.abspath(os.path.dirname(__file__))
+os.chdir(dirname)
+sys.path.append('./')
+sys.path.append(dirname)
+
+import main
+main.main()

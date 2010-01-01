@@ -1,0 +1,17 @@
+v0.1 - xx.xx
+    - improbe scripts in `utils` diretory.
+    - new transition module and Option scene.
+    - new `utils` dir with exe file creation script (Thanks Clint Herron).
+    - Shaolin: new states to handle `run` action in control.
+    - Control: add `run` action.
+    - Logo: first scene of the game implemented.
+    - Basic collision implementation.
+    - Stage: new layers
+    - Stage: 3d floor and multiple layers.
+    - State: basic implementation.
+    - Control: new implementation.
+    - Shaolin: add graphics files.
+    - Shaolin: first animation.
+    - Initial directory structure.
+    - First implementation with pyglet and cocos. Previous versions of sbfury 
+      are in pygame.

@@ -15,24 +15,23 @@ import scene
 class CreateGameThread(Thread):
     """Load the Game scene in background to not freeze the game."""
 
-    def __init__(self, scene):
+    def __init__(self, scene, level):
         super(CreateGameThread, self).__init__()
         self.scene = scene
+        self.level = level
 
     def run(self):
-        import os
-        os.system('sleep 1s')
-        game_scene = scene.game.Game()
+        game_scene = scene.game.Game(self.level)
         self.scene.change_to_scene(game_scene)
 
 
 class Loading(cocos.scene.Scene):
     """Show a loading animation while load Game scene in a thread."""
 
-    def __init__(self):
+    def __init__(self, level):
         super(Loading, self).__init__()
         self.add(LoadingLayer(self))
-        self.thread = CreateGameThread(self)
+        self.thread = CreateGameThread(self, level)
         self.thread.start()
 
     def change_to_scene(self, new_scene):

@@ -14,6 +14,7 @@ import stage
 import control
 import shaolin
 import enemies
+import scene
 
 FINAL_LEVEL = 6
 
@@ -62,9 +63,9 @@ class Messages(cocos.layer.Layer):
 
 class Game(cocos.scene.Scene):
 
-    def __init__(self):
+    def __init__(self, level=1):
         super(Game, self).__init__()
-        self.level = 1
+        self.level = level
         self.ui = None
         self.messages = Messages(self)
         self.add(self.messages, z=1)
@@ -115,14 +116,13 @@ class Game(cocos.scene.Scene):
 
     def advance_level(self):
         self.level += 1
+        #print self.children
         self.remove(self.stage)
         #self._create_player_and_stage()
         #self._create_uicontrol()
         #self._show_stage_message()
-        import scene
-        import cocos
 
-        new_scene = scene.loading.Loading()
+        new_scene = scene.loading.Loading(self.level)
         common.change_scene(new_scene, 
                 transition=cocos.scenes.transitions.FadeTransition)
 

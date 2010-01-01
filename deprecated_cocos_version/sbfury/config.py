@@ -5,11 +5,16 @@
 # License: GPLv3 (see http://www.gnu.org/licenses/gpl.html)
 
 
-VSYNC = False
+# Use `False` for fast blits
+DEBUG_GL = False
+
+
+NEW_PYGLET_LOOP = True
+VSYNC = True
 PERSPECTIVE_FLOOR = True
 MOVE_WINDOW = False
 SHOW_FRONT_LAYER = False
 CAMERA_STEP = 20
 SHAOLIN_INITIAL_JUMP_SPEED = 12
-SHOW_COLLISION_BOXES = True
+SHOW_COLLISION_BOXES = False
 SHOW_CONTROL_POINTS = False
