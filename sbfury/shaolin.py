@@ -33,6 +33,11 @@ class Shaolin(sf.Sprite):
         elif self.control.right:
             self.Move(dt * 200, 0)
 
+        if self.control.up:
+            self.Move(0, -dt * 200)
+        elif self.control.down:
+            self.Move(0, dt * 200)
+
 
     def update_animation(self, dt):
         was_restarted = self.animation.update(dt)
