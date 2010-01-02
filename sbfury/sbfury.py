@@ -8,13 +8,12 @@ import shaolin
 
 FULLSCREEN = False
 
-app = sf.RenderWindow()
-
 if FULLSCREEN:
-    app.Create(sf.VideoMode(720, 480), "sbfury", sf.Style.Fullscreen)
+    app = sf.RenderWindow(sf.VideoMode(720, 480), "sbfury", sf.Style.Fullscreen)
 else:
-    app.Create(sf.VideoMode(720, 480), "sbfury")
+    app = sf.RenderWindow(sf.VideoMode(720, 480), "sbfury")
     app.SetPosition(300, 200)
+
 
 # Es el contenedor del evento.
 event = sf.Event()
