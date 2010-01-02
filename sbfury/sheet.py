@@ -15,6 +15,9 @@ class ImageSheet:
         self.sub_rect = sf.IntRect(0, 0, self.frame_width, self.frame_height)
         self.SetFrameIndex(0)
 
+    def get_center(self):
+        return self.frame_width / 2, self.frame_height - 10
+
     def SetFrameIndex(self, index):
         self.index = index
 

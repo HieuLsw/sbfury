@@ -42,3 +42,6 @@ class Animation:
         self.sheet.SetFrameIndex(frame_to_show)
 
         return was_restarted
+
+    def get_center(self):
+        return self.sheet.get_center()

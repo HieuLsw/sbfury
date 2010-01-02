@@ -9,7 +9,7 @@ class Shaolin(sf.Sprite):
         sf.Sprite.__init__(self, image.image)
         image.Assign(self)
         self.image = image
-        self.SetPosition(200, 200)
+        self.SetPosition(200, 400)
         self._load_animations()
         self.set_animation('stand')
         self.control = control
@@ -24,14 +24,18 @@ class Shaolin(sf.Sprite):
 
     def set_animation(self, animation_name):
         self.animation = self.animations[animation_name]
+        x, y = self.animation.get_center()
+        self.SetCenter(x, y)
 
     def update(self, dt):
         self.update_animation(dt)
 
         if self.control.left:
             self.Move(-dt * 200, 0)
+            self.FlipX(True)
         elif self.control.right:
             self.Move(dt * 200, 0)
+            self.FlipX(False)
 
         if self.control.up:
             self.Move(0, -dt * 200)
