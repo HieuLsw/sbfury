@@ -4,7 +4,7 @@ import animation
 
 class Shaolin(sf.Sprite):
 
-    def __init__(self):
+    def __init__(self, control):
         image = common.load_sheet("../data/shaolin/stand.png", 4, 1)
         sf.Sprite.__init__(self, image.image)
         image.Assign(self)
@@ -12,6 +12,7 @@ class Shaolin(sf.Sprite):
         self.SetPosition(200, 200)
         self._load_animations()
         self.set_animation('stand')
+        self.control = control
 
     def _load_animations(self):
 
@@ -27,6 +28,13 @@ class Shaolin(sf.Sprite):
     def update(self, dt):
         self.update_animation(dt)
 
+        if self.control.left:
+            self.Move(-dt * 200, 0)
+        elif self.control.right:
+            self.Move(dt * 200, 0)
+
+
     def update_animation(self, dt):
-        self.animation.update(dt)
+        was_restarted = self.animation.update(dt)
         self.animation.Assign(self)
+        return was_restarted

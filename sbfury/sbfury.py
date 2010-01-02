@@ -1,6 +1,7 @@
 from PySFML import sf
 import sys
 import common
+import control
 
 import shaolin
 
@@ -18,14 +19,16 @@ color = sf.Color(200, 200, 200)
 
 app.UseVerticalSync(True)
 
+control = control.Control(input)
 
-player = shaolin.Shaolin()
+player = shaolin.Shaolin(control)
 
 while True:
     dt = app.GetFrameTime()
     app.Clear(color)
     app.Draw(player)
 
+    control.update(dt)
     player.update(dt)
 
     while app.GetEvent(event):
