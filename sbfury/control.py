@@ -15,6 +15,8 @@ class Control:
                 'down': sf.Key.Down,
                 'attack': sf.Key.D,
                 'jump': sf.Key.A,
+                'run': sf.Key.S,
+                'special': sf.Key.Space,
                 }
 
     def update(self, dt):

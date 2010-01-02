@@ -1,18 +1,25 @@
 from PySFML import sf
 import common
 import animation
+import states
 
 class Shaolin(sf.Sprite):
 
     def __init__(self, control):
+        self.control = control
+
         image = common.load_sheet("../data/shaolin/stand.png", 4, 1)
+        self.image = image
         sf.Sprite.__init__(self, image.image)
         image.Assign(self)
-        self.image = image
+
         self.SetPosition(200, 400)
         self._load_animations()
         self.set_animation('stand')
-        self.control = control
+
+        self.change_state(states.Starting(self))
+        self.last_attack = (0, 0)
+        self.dy = 0
 
     def _load_animations(self):
         animation_defines = [
@@ -40,7 +47,7 @@ class Shaolin(sf.Sprite):
                 ('starting', 3, 1),
                 ('take', 1, 1),
                 ('throw', 3, 1),
-                ('walk', 4, 1),
+                ('walk', 4, 0.2),
                 ]
 
         # each elements has an animation like: 'stand': AnimationObject()...
@@ -61,6 +68,8 @@ class Shaolin(sf.Sprite):
         self.SetCenter(x, y)
 
     def update(self, dt):
+        self.state.update(dt)
+        '''
         self.update_animation(dt)
 
         if self.control.left:
@@ -74,9 +83,22 @@ class Shaolin(sf.Sprite):
             self.Move(0, -dt * 200)
         elif self.control.down:
             self.Move(0, dt * 200)
+        '''
 
 
     def update_animation(self, dt):
         was_restarted = self.animation.update(dt)
         self.animation.Assign(self)
         return was_restarted
+
+    def change_state(self, new_state):
+        self.state = new_state
+
+    def set_flip(self, flip):
+        self.FlipX(flip)
+
+    def move(self, dx, dy):
+        self.Move(dx, dy)
+
+    def are_in_flood(self):
+        return self.dy > 0
