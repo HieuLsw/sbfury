@@ -13,6 +13,8 @@ class Control:
                 'right': sf.Key.Right,
                 'up': sf.Key.Up,
                 'down': sf.Key.Down,
+                'attack': sf.Key.D,
+                'jump': sf.Key.A,
                 }
 
     def update(self, dt):
