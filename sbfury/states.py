@@ -115,7 +115,10 @@ class Walk(State):
         self.player.move(dx, dy)
 
         if c.jump:
-            self.player.change_state(JumpWalk(self.player, dx))
+            if dx > 0:
+                self.player.change_state(JumpWalk(self.player, 1))
+            else:
+                self.player.change_state(JumpWalk(self.player, -1))
 
         if not (c.up or c.down or c.left or c.right):
             self.player.change_state(Stand(self.player))
@@ -429,6 +432,9 @@ class Jump(State):
         self.soft_dx = 0
         self.soft_dy = 0
 
+        self.dy += dt * 15
+        self.player.dy += self.dy
+
         if self.player.control.left:
             self.soft_dx = -speed
         elif self.player.control.right:
@@ -441,10 +447,12 @@ class Jump(State):
 
         self.player.move(self.soft_dx, self.soft_dy)
 
+        if self.player.are_in_flood():
+            self.player.change_state(Stand(self.player))
 
 class JumpWalk(Jump):
     
-    def __init__(self, player, vx, dy=-12):
+    def __init__(self, player, vx, dy=-4.0):
         Jump.__init__(self, player, dy)
         player.set_animation('jumpwalk')
         #player.bandage.set_state('jumpstand')
@@ -473,9 +481,9 @@ class JumpWalk(Jump):
 
     def update(self, dt):
         Jump.update(self, dt)
-        self.player.move(self.vx, 0)
-        self.dy += 0.5
-        self.player.dy += self.dy
+        self.player.move((self.vx * 200) * dt, 0)
+        #self.dy += 0.5
+        #self.player.dy += self.dy
         self.state()
     
         if self.player.control.attack:
@@ -487,7 +495,7 @@ class JumpWalk(Jump):
 
 class JumpStand(Jump):
     
-    def __init__(self, player, dy=-12):
+    def __init__(self, player, dy=-4.5):
         Jump.__init__(self, player, dy)
         player.set_animation('jumpstand')
         #player.bandage.set_state('jumpstand')
@@ -498,8 +506,9 @@ class JumpStand(Jump):
         self.initial_dy = dy
 
     def update(self, dt):
+        '''
         Jump.update(self, dt)
-        self.dy += dt * 100
+        self.dy += dt * 10
         self.player.dy += self.dy
         self.state()
 
@@ -508,6 +517,8 @@ class JumpStand(Jump):
             dy = self.dy
             idy = self.initial_dy
             self.player.change_state(AttackJumpStand(p, dy, idy))
+        '''
+        Jump.update(self, dt)
 
     def when_jump(self):
         if self.dy > -3:
@@ -527,13 +538,13 @@ class JumpStand(Jump):
 
 class JumpRun(JumpWalk):
     
-    def __init__(self, player, vx, dy=-12):
+    def __init__(self, player, vx, dy=-4.5):
         JumpWalk.__init__(self, player, vx, dy)
 
     def update(self):
         self.player.move(self.vx, 0)
-        self.dy += 0.5
-        self.player.dy += self.dy
+        #self.dy += 0.5
+        #self.player.dy += self.dy
         self.state()
 
         if self.player.control.attack:
