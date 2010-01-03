@@ -34,6 +34,8 @@ class ImageSheet:
 
         sprite.SetImage(self.image)
         sprite.SetSubRect(self.sub_rect)
+        x, y = self.get_center()
+        sprite.SetCenter(x, y)
 
     def NextFrame(self):
         has_restarted = False

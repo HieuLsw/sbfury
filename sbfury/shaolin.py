@@ -64,8 +64,6 @@ class Shaolin(sf.Sprite):
 
     def set_animation(self, animation_name):
         self.animation = self.animations[animation_name]
-        x, y = self.animation.get_center()
-        self.SetCenter(x, y)
 
     def update(self, dt):
         self.state.update(dt)
