@@ -2,6 +2,7 @@ from PySFML import sf
 import common
 import animation
 import states
+import shadow
 
 class Shaolin(sf.Sprite):
 
@@ -13,13 +14,14 @@ class Shaolin(sf.Sprite):
         sf.Sprite.__init__(self, image.image)
         image.Assign(self)
 
-        self.SetPosition(200, 400)
         self._load_animations()
         self.set_animation('stand')
 
         self.change_state(states.Starting(self))
         self.last_attack = (0, 0)
         self.dy = 0
+        self.shadow = shadow.Shadow(self)
+        self.x, self.y = 200, 400
 
     def _load_animations(self):
         animation_defines = [
@@ -66,7 +68,10 @@ class Shaolin(sf.Sprite):
         self.animation = self.animations[animation_name]
 
     def update(self, dt):
+        self.SetPosition(self.x, self.y + self.dy)
         self.state.update(dt)
+        self.shadow.update(dt)
+
         '''
         self.update_animation(dt)
 
@@ -96,7 +101,8 @@ class Shaolin(sf.Sprite):
         self.FlipX(flip)
 
     def move(self, dx, dy):
-        self.Move(dx, dy)
+        self.x += dx
+        self.y += dy
 
     def are_in_flood(self):
         return self.dy > 0

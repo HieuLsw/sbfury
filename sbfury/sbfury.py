@@ -32,6 +32,7 @@ while True:
     dt = app.GetFrameTime()
     app.Clear(color)
     app.Draw(player)
+    app.Draw(player.shadow)
 
     control.update(dt)
     player.update(dt)

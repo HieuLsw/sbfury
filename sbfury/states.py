@@ -394,21 +394,22 @@ class Starting(State):
         State.__init__(self, player)
         player.set_animation('starting')
         #player.bandage.set_state('starting')
-        self.dy = -400
+        self.dy = -200
         self.d = 0
 
     def update(self, dt):
         self.player.update_animation(dt)
-        #self.player.dy = self.dy
-        self.d += 0.5
+        self.player.dy = self.dy
+        self.d += dt * 2
         self.dy += self.d
 
         if self.dy > 0:
-            #self.player.dy = 0
+            self.player.dy = 0
             self.player.change_state(Stand(self.player))
 
-        #self.player.dy += self.dy
-        #self.dy += 0.5
+
+        self.player.dy += self.dy
+        self.dy += 0.5
 
 class Jump(State):
     
@@ -445,32 +446,33 @@ class JumpWalk(Jump):
     
     def __init__(self, player, vx, dy=-12):
         Jump.__init__(self, player, dy)
-        player.animation.set_state('jumpwalk')
-        player.bandage.set_state('jumpstand')
-        player.image = player.animation.get_image(player.flip)
+        player.set_animation('jumpwalk')
+        #player.bandage.set_state('jumpstand')
+        #player.image = player.animation.get_image(player.flip)
         self.step = 0
         self.vx = vx
         self.initial_dy = dy
         self.state = self.when_jump
-        self.player.bandage.update_animation()
+        #self.player.bandage.update_animation()
 
     def when_jump(self):
         if self.dy > -3:
-            self.advance_animation()
+            #self.advance_animation()
             self.state = self.when_are_on_top
-            self.player.bandage.update_animation()
+            #self.player.bandage.update_animation()
 
     def when_are_on_top(self):
         if self.dy > 3:
-            self.advance_animation()
+            #self.advance_animation()
             self.state = self.when_fall
-            self.player.bandage.update_animation()
+            #self.player.bandage.update_animation()
 
     def when_fall(self):
-        self.player.do_stand_if_are_in_flood()
+        if self.player.are_in_flood():
+            self.player.change_state(Stand(self.player))
 
-    def update(self):
-        Jump.update(self)
+    def update(self, dt):
+        Jump.update(self, dt)
         self.player.move(self.vx, 0)
         self.dy += 0.5
         self.player.dy += self.dy
@@ -497,7 +499,7 @@ class JumpStand(Jump):
 
     def update(self, dt):
         Jump.update(self, dt)
-        self.dy += 0.5
+        self.dy += dt * 100
         self.player.dy += self.dy
         self.state()
 
