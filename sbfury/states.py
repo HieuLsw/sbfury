@@ -15,7 +15,7 @@ class State:
         self.player = player
         #self.player.unset_collision()
 
-    def update(self, dt):
+    def update(self):
         raise Exception('you must redefine "update" method')
 
 
@@ -32,8 +32,8 @@ class Stand(State):
             player.bandage.set_state('stand')
         '''
 
-    def update(self, dt):
-        self.player.update_animation(dt)
+    def update(self):
+        self.player.update_animation()
         c = self.player.control
 
         if c.left or c.right or c.up or c.down:
@@ -63,10 +63,10 @@ class Walk(State):
             player.bandage.set_state('stand')
         '''
 
-    def update(self, dt):
+    def update(self):
         c = self.player.control
-        self.player.update_animation(dt)
-        velocity = 300 * dt
+        self.player.update_animation()
+        velocity = 300 * 1
         dx = 0
         dy = 0
 
@@ -346,14 +346,14 @@ class Attack(State):
             player.bandage.set_state('stand')
         '''
     
-    def update(self, dt):
+    def update(self):
         c = self.player.control
 
         if c.special:
             self.player.change_state(Special(self.player))
             return
 
-        if self.player.update_animation(dt):
+        if self.player.update_animation():
             self.player.change_state(Stand(self.player, False))
         else:
             # si es el cuadro de animacion indicado genera una colision
@@ -400,10 +400,10 @@ class Starting(State):
         self.dy = -200
         self.d = 0
 
-    def update(self, dt):
-        self.player.update_animation(dt)
+    def update(self):
+        self.player.update_animation()
         self.player.dy = self.dy
-        self.d += dt * 2
+        self.d += 1 * 2
         self.dy += self.d
 
         if self.dy > 0:
@@ -427,12 +427,12 @@ class Jump(State):
         self.player.image = self.player.animation.get_image(flip)
     '''
 
-    def update(self, dt):
-        speed = dt * 100
+    def update(self):
+        speed = 1 * 100
         self.soft_dx = 0
         self.soft_dy = 0
 
-        self.dy += dt * 15
+        self.dy += 0.01 * 15
         self.player.dy += self.dy
 
         if self.player.control.left:
@@ -479,9 +479,9 @@ class JumpWalk(Jump):
         if self.player.are_in_flood():
             self.player.change_state(Stand(self.player))
 
-    def update(self, dt):
-        Jump.update(self, dt)
-        self.player.move((self.vx * 200) * dt, 0)
+    def update(self):
+        Jump.update(self)
+        self.player.move((self.vx * 200), 0)
         #self.dy += 0.5
         #self.player.dy += self.dy
         self.state()
@@ -505,7 +505,7 @@ class JumpStand(Jump):
         #self.player.image = self.player.animation.get_image(self.player.flip)
         self.initial_dy = dy
 
-    def update(self, dt):
+    def update(self):
         '''
         Jump.update(self, dt)
         self.dy += dt * 10
@@ -518,7 +518,7 @@ class JumpStand(Jump):
             idy = self.initial_dy
             self.player.change_state(AttackJumpStand(p, dy, idy))
         '''
-        Jump.update(self, dt)
+        Jump.update(self)
 
     def when_jump(self):
         if self.dy > -3:

@@ -9,5 +9,5 @@ class Shadow(sf.Sprite):
         sf.Sprite.__init__(self, image)
         self.SetCenter(58, 20)
 
-    def update(self, dt):
+    def update(self):
         self.SetPosition(self.shaolin.x, self.shaolin.y)

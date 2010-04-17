@@ -1,10 +1,17 @@
 from PySFML import sf
+from time import time
 import sys
 import common
 import control
 
 import shaolin
 
+def get_tick():
+    "Retorna el tiempo actual en milisegundos."
+    return int(time() * 1000)
+
+FPS = 60
+TICK_STEP = 1000 / FPS
 
 FULLSCREEN = False
 
@@ -27,6 +34,7 @@ app.UseVerticalSync(True)
 control = control.Control(input)
 
 player = shaolin.Shaolin(control)
+next_tick = get_tick()
 
 while True:
     dt = app.GetFrameTime()
@@ -34,16 +42,19 @@ while True:
     app.Draw(player)
     app.Draw(player.shadow)
 
-    control.update(dt)
-    player.update(dt)
+    while get_tick() > next_tick:
 
-    while app.GetEvent(event):
+        while app.GetEvent(event):
 
-        if event.Type == sf.Event.KeyPressed:
-            if event.Key.Code == sf.Key.Escape:
-                app.Close()
+            if event.Type == sf.Event.KeyPressed:
+                if event.Key.Code == sf.Key.Escape:
+                    app.Close()
+                    sys.exit(0)
+            elif event.Type == sf.Event.Closed:
                 sys.exit(0)
-        elif event.Type == sf.Event.Closed:
-            sys.exit(0)
+
+        next_tick += TICK_STEP
+        control.update()
+        player.update()
 
     app.Display()

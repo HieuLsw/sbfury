@@ -26,7 +26,6 @@ class Shaolin(sf.Sprite):
     def _load_animations(self):
         animation_defines = [
                 # (name, frames, delay per frame)
-                ('stand', 4, 1),
                 ('attack1', 2, 0.05),
                 ('attack2', 2, 0.05),
                 ('attack3', 2, 0.05),
@@ -67,10 +66,10 @@ class Shaolin(sf.Sprite):
     def set_animation(self, animation_name):
         self.animation = self.animations[animation_name]
 
-    def update(self, dt):
+    def update(self):
         self.SetPosition(self.x, self.y + self.dy)
-        self.state.update(dt)
-        self.shadow.update(dt)
+        self.state.update()
+        self.shadow.update()
 
         '''
         self.update_animation(dt)
@@ -89,8 +88,8 @@ class Shaolin(sf.Sprite):
         '''
 
 
-    def update_animation(self, dt):
-        was_restarted = self.animation.update(dt)
+    def update_animation(self):
+        was_restarted = self.animation.update()
         self.animation.Assign(self)
         return was_restarted
 

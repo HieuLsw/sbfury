@@ -5,7 +5,7 @@ class Control:
     def __init__(self, input):
         self.input = input
         self._create_map()
-        self.update(0)
+        self.update()
 
     def _create_map(self):
         self.map = {
@@ -19,7 +19,7 @@ class Control:
                 'special': sf.Key.Space,
                 }
 
-    def update(self, dt):
+    def update(self):
 
         for k, v in self.map.items():
             if self.input.IsKeyDown(v):

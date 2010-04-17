@@ -15,9 +15,9 @@ class Animation:
     def reset(self):
         self.delay_counter = 0
 
-    def update(self, dt):
+    def update(self):
         "Avanza en la animacion y retorna True si ha reiniciado."
-        self.delay_counter += dt
+        self.delay_counter += 0.1
 
         if self.delay_counter >= self.delay:
             self.reset()
