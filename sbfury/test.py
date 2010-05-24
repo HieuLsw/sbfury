@@ -1,3 +1,0 @@
-import sbfury
-
-sbfury.main()
