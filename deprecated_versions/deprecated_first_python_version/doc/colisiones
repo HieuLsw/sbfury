@@ -1,0 +1,20 @@
+Las colisiones entre personajes permiten determinar cuando un personaje colpea a
+otro.
+
+En la clase 'Player' existen varios métodos que realizan estos cálculos de
+colisiones:
+    
+    get_collision_receive() - informa si el personaje 'recibe' un golpe de otro
+    personaje en la lista `enemies` de su propia instancia.
+
+    get_collision_send() - informa 'True' si el personaje está golpeando en ese
+    instante a otro. Esto es útil cuando el personaje quiea incrementar su
+    puntaje con cada golpe o mostrar una animación diferente cuando concreta un
+    golpe.
+
+    set_collision() - se debe llamar para generar una rectángulo emisor de
+    colisión. Por ejemplo, al momento de recibir el evento de la tecla
+    'golpear'.
+
+    unset_collision() - realiza el trabajo inverso al método `set_collision`, es
+    decir, elimina el rectángulo que emite colisión.

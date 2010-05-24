@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css">
+<TITLE>Documento de diseño: Shaolin's Blind Fury, </TITLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="header" ID="header">
+<H1>Documento de diseño: Shaolin's Blind Fury, </H1>
+<H2>Hugo Ruscitti</H2>
+<H3>0.2</H3>
+</DIV>
+
+<DIV CLASS="toc" ID="toc">
+  <OL>
+  <LI><A HREF="#toc1">Introducción</A>
+    <UL>
+    <LI><A HREF="#toc2">1.1. Modo de juego</A>
+      <UL>
+      <LI><A HREF="#toc3">1.1.1. Objetivo</A>
+      <LI><A HREF="#toc4">1.1.2. Aspecto</A>
+      <LI><A HREF="#toc5">1.1.3. Controles</A>
+      </UL>
+    <LI><A HREF="#toc6">1.2. Personajes</A>
+      <UL>
+      <LI><A HREF="#toc7">1.2.1. Shaolin</A>
+      </UL>
+    </UL>
+  <LI><A HREF="#toc8">Implementación</A>
+    <UL>
+    <LI><A HREF="#toc9">2.1. Integración OpenGL</A>
+    <LI><A HREF="#toc10">2.2. Opciones</A>
+    <LI><A HREF="#toc11">2.3. Desplazamiento o Scroll</A>
+      <UL>
+      <LI><A HREF="#toc12">2.3.1. Bordes de pantalla</A>
+      <LI><A HREF="#toc13">2.3.2. Controles</A>
+      <LI><A HREF="#toc14">2.3.3. Estados del personaje</A>
+      <LI><A HREF="#toc15">2.3.4. Gestión de tiempo</A>
+      <LI><A HREF="#toc16">2.3.5. Sombra</A>
+      <LI><A HREF="#toc17">2.3.6. Colisiones</A>
+      </UL>
+    </UL>
+  </OL>
+
+</DIV>
+<DIV CLASS="body" ID="body">
+<A NAME="toc1"></A>
+<H1>1. Introducción</H1>
+<P>
+Shaolin's Blind Fury es un videojuego de acción estilo Final Fight, el jugador
+controla un personaje que puede golpear y saltar.
+</P>
+<A NAME="toc2"></A>
+<H2>1.1. Modo de juego</H2>
+<A NAME="toc3"></A>
+<H3>1.1.1. Objetivo</H3>
+<P>
+El jugador controla un estudiante de artes marciales. Su objetivo es
+condicirlo a través del escenario golpeando a todos los personajes
+que se crucen en su camino.
+</P>
+<A NAME="toc4"></A>
+<H3>1.1.2. Aspecto</H3>
+<P>
+La pantalla de juego principal muestra los elementos mas imporantes
+para el jugador.
+</P>
+<P>
+<IMG ALIGN="middle" SRC="images/game_screen.jpg" BORDER="0" ALT="">
+</P>
+<P>
+En la parte inferior se encuentran los personajes del juego, el shaolin
+se controla con un teclado o joystick, mientras que los enemigos tienen
+autonomía.
+</P>
+<A NAME="toc5"></A>
+<H3>1.1.3. Controles</H3>
+<P>
+El usuario puede utilizar los direccionales del teclado o directamente
+un joystick. El sistema de controles se
+</P>
+<A NAME="toc6"></A>
+<H2>1.2. Personajes</H2>
+<A NAME="toc7"></A>
+<H3>1.2.1. Shaolin</H3>
+<P>
+<IMG ALIGN="middle" SRC="images/shaolin.png" BORDER="0" ALT="">
+</P>
+<P>
+Es el protagonista del juego.
+</P>
+<A NAME="toc8"></A>
+<H1>2. Implementación</H1>
+<A NAME="toc9"></A>
+<H2>2.1. Integración OpenGL</H2>
+<P>
+La biblioteca multimedia utilizada principalmente es SDL, aunque mediante
+la constante HAVE_OPENGL se puede obtener aceleración de Hardware y
+soporte para la biblioteca OpenGL.
+</P>
+<A NAME="toc10"></A>
+<H2>2.2. Opciones</H2>
+<P>
+El programa se configura directamente desde los argumentos del
+programa. El objeto Director espera recibir una estructura
+de tipo Config por parte del programa principal.
+</P>
+<P>
+Estas son algunas de las opciones que puede usar al iniciar
+el programa:
+</P>
+<PRE>
+usage: ./sbfury [OPTIONS]
+
+    -fs     enable fullscreen mode
+    -wide   enable wide screen mode
+</PRE>
+<P></P>
+<A NAME="toc11"></A>
+<H2>2.3. Desplazamiento o Scroll</H2>
+<P>
+El desplazamiento del escenario se realiza gracias a la cooperación
+de dos objetos, Stage y Group.
+</P>
+<P>
+Al momento de crear el objeto Stage se le envía una referencia al objeto
+Shaolin, para que lo siga. Stage tiene una variable interna que intenta
+aproximar a la posición del sprite que sigue, esto permite simular un
+seguimiento similar al que realizaría una cámara de video.
+</P>
+<P>
+<IMG ALIGN="middle" SRC="images/scroll.png" BORDER="0" ALT="">
+</P>
+<P>
+IMPORTANTE: la imagen no está actualizada, la coordenada x tiene signo
+positivo siempre.
+</P>
+<P>
+Otro objeto que coopera para realizar el desplazamiento es Group. Group
+es un contenedor que tiene a todos los objetos del juego: Shaolin, los
+enemigos, objetos del escenario.. etc. Para simular el desplazamiento, 
+Group tiene un parámetro <I>x</I> en su método draw. Este parámetro x es
+un desplazamiento horizontal que aplicará a todos los objetos del juego. Por
+ejemplo, si se llama a draw con x=100, esto significará que la cámara está
+mirando el escenario unos 100 pixeles a la derecha, por lo tanto Group
+imprime todos los personajes del juego desplazados hacia la izquierda
+unos 100 pixeles.
+</P>
+<P>
+La relación entre estos dos objetos se produce al momento de imprimir
+toda la pantalla. Stage le tiene que pasar su variable x a Group para que
+este imprima los personajes de manera consistente.
+</P>
+<P>
+No hay otra relación para construir el desplazamiento, todos los objetos
+del juego desconocen la posición de la cámara. Para ellos la posición
+en pantalla es absoluta, por ejemplo, el shaolin podría tener la posición
+(2000, 300), como si la pantalla fuera realmente grande.
+</P>
+<A NAME="toc12"></A>
+<H3>2.3.1. Bordes de pantalla</H3>
+<P>
+El objetivo del desplazamiento es mostrar al personaje dentro de pantalla
+de juego en todo momento.
+</P>
+<P>
+El movimiento solo se inicia cuando el personaje llega a los bordes de
+la pantalla. Para esto se verifica si el modo de video es wide o no.
+</P>
+<A NAME="toc13"></A>
+<H3>2.3.2. Controles</H3>
+<H4>2.3.2.1. Objeto Control</H4>
+<P>
+El objeto Control representa todas las entradas de teclado y joystick. El
+objetivo del módulo es proveer variables simples como 'up', 'down', 'jump',
+'attack'.
+</P>
+<P>
+Este módulo reside en el objeto Director, dado que se espera que todos
+los eventos de entrada se consulten ahí. Por ejemplo, el menú principal
+pude obtener una referencia a este objeto y comenzar a consultar su
+estado.
+</P>
+<H4>2.3.2.2. Controlando al personaje Shaolin</H4>
+<P>
+El protagonista del juego obtiene una referencia al objeto Control y
+consulta su estado desde cada uno de sus estados, como Walk o Stand.
+</P>
+<A NAME="toc14"></A>
+<H3>2.3.3. Estados del personaje</H3>
+<P>
+Shaolin realiza distintas acciones o estados como caminar, saltar, o golpear.
+</P>
+<P>
+Para implementar esto se ha optado por la solución que propone el patrón de
+comportamiento Strategy. Cada estado del personaje está representado
+por un objeto individual que hereda de State. Cada uno de estos objetos
+debe tener métodos constructor, update y on_animation_done. Estos métodos
+se llaman directamente desde la clase Shaolin.
+</P>
+<P>
+Esto permite desacoplar el comportamiento en un momento dado del personaje
+que representa el movimiento.
+</P>
+<P>
+La mayor relación entre estos objetos se da en el método Shaolin::update,
+donde se actualiza la animación y se delega todo comportamiento a la
+instancia de objeto State.
+</P>
+<P>
+Note que esta estrategia es la misma que se utiliza para gestionar las
+escenas en el objeto Director. Ahí, Director intercambia escenas como
+si se tratara de estados individuales.
+</P>
+<H4>2.3.3.1. Animaciones</H4>
+<P>
+Cada estado generalmente muestra distintas animaciones, todas estas
+animaciones se construyen en el método 'load_animations' de la clase
+Shaolin. De forma que la carga de imágenes se haga una sola vez, y
+no en cada momento que se cambia de estado.
+</P>
+<P>
+Cada sprite debe tener al menos una referencia a un objeto Animation
+para poder observarse. Este objeto Animation se tiene que vincular
+al sprite usando el método "set_animation", de forma que este método
+defina correctamente las coordenadas del sprite como los puntos
+de control (anchor_x, anchor_y).
+</P>
+<A NAME="toc15"></A>
+<H3>2.3.4. Gestión de tiempo</H3>
+<P>
+El bucle principal de juego controla la velocidad constante del juego,
+y dentro de ese bucle se genera una variable para interpolar movimientos
+llamada 'dt'.
+</P>
+<P>
+La unidad de esta variable representa una centena de segundo y se
+notifica a toda escena usando el método Scene::update.
+</P>
+<P>
+Consulte mas detalles en el método Director::run.
+</P>
+<A NAME="toc16"></A>
+<H3>2.3.5. Sombra</H3>
+<P>
+La sombra del personaje es un sprite separado, que consulta al
+objeto Sprite cada vez que se actualiza. Este objeto Shadow no solo
+consulta las coordenadas de posición, además consulta la variable
+'distance_to_floor' para representar la separación entre el
+personaje y el suelo reduciendo el tamaño del sprite que muesta. Esta
+última característica solo se observa si utiliza el soporte para
+opengl.
+</P>
+<A NAME="toc17"></A>
+<H3>2.3.6. Colisiones</H3>
+<P>
+Cada personaje del juego tiene un rectángulo llamado ''collision_send''
+que representa el area de ataque o emisión de golpe para otros personajes.
+</P>
+<P>
+Por ejemplo, en la siguiente imagen se muestra el area de colisión para
+el personaje "shaolin":
+</P>
+<P>
+<IMG ALIGN="middle" SRC="images/collision.png" BORDER="0" ALT="">
+</P>
+<P>
+Note que hay solo tres valores representativos para definir
+el area de colisión:
+</P>
+  <UL>
+  <LI>el ancho del rectángulo, nombre ''width''.
+  <LI>el alto del rectángulo, nombre ''height''.
+  <LI>la altura respecto del punto (x, y)
+  </UL>
+
+<P>
+El resto de los valores se calculan a partir del personaje que
+emite la colisión. Por ejemplo, ''width'' se calcula desde el centro
+del sprite, por lo tanto si el personaje está mirando hacia la
+derecha el rectángulo sobresale en esa dirección (como se ve en
+la imagen). En cambio si el personaje está mirando hacia la
+izquiera el rectángulo sobresaldrá hacia la izquierda.
+</P>
+<H4>2.3.6.1. ¿como detectar colisiones?</H4>
+<P>
+Por convensión quienes consultan la existencia de colisión son
+los objetos receptores, para esto hacen uso del método ''are_hit_me'' y
+le pasan como argumento una referencia a otro sprite.
+</P>
+<P>
+Si este método retorna <I>true</I>es porque el personaje ha sido
+golpeado por el otro sprite y entran en colisión su area en pantalla
+con la zona de colisión del personaje emisor. (también se verifica si
+ambos estan cerca en el plano de profundidad 'z' con el método
+interno ''are_close_to_other_sprite_in_z_plane''.).
+</P>
+</DIV>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -\-css-sugar -\-encoding utf-8 -n -\-toc -t html -\-style style.css documento_de_diseno.t2t -->
+</BODY></HTML>

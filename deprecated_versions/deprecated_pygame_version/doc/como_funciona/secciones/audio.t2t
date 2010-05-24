@@ -1,0 +1,23 @@
+Audio
+Hugo Ruscitti
+0.1
+
+= Audio =
+
+== Resumen == 
+
+El módulo //common// contiene una referencia al objeto Audio, este
+objeto almacena todos los sonidos del juego, por lo tanto, si
+se quiere reproducir un sonido basta con escribir:
+
+```
+from common import audio
+
+audio.play('punch1')
+```
+
+en general, ```audio.play(nombre_sonido)``` debería funcionar desde cualquier
+parte del programa...
+
+
+

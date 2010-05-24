@@ -1,0 +1,24 @@
+¿Como funciona Shaolin's Blind Fury?
+Hugo Ruscitti
+0.1
+
+= Introducción =
+
+Este documento describe varias caracterísicas de diseño en el videojuego
+**Shaolin's Blind Fury**. El motivo de este texto es alentar a nuevos
+desarrolladores a investigar el código del programa, adaptarlo a sus
+necesidades y/o mejorarlo.
+
+Puede obtener mas información sobre este programa visitando el sitio web del
+proyecto [LosersJuegos http://www.losersjuegos.com.ar].
+
+%!include: secciones/intro.t2t
+%!include: secciones/estados.t2t
+%!include: secciones/audio.t2t
+%!include: secciones/colisiones.t2t
+%!include: secciones/controles.t2t
+%!include: secciones/debug.t2t
+%!include: secciones/opciones.t2t
+%!include: secciones/tomas.t2t
+%!include: secciones/escenarios.t2t
+%!include: secciones/indicador_de_energia.t2t

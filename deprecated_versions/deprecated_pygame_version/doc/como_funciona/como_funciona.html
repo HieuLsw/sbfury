@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META NAME="generator" CONTENT="http://txt2tags.sf.net">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<LINK REL="stylesheet" TYPE="text/css" HREF="style.css">
+<TITLE>¿Como funciona Shaolin's Blind Fury?</TITLE>
+</HEAD>
+<BODY>
+
+<DIV CLASS="header" ID="header">
+<H1>¿Como funciona Shaolin's Blind Fury?</H1>
+<H2>Hugo Ruscitti</H2>
+<H3>0.1</H3>
+</DIV>
+
+<DIV CLASS="toc" ID="toc">
+  <UL>
+  <LI><A HREF="#toc1">Introducción</A>
+  <LI><A HREF="#toc2">Temática del juego</A>
+  <LI><A HREF="#toc3">Historia</A>
+  <LI><A HREF="#toc4">Estados</A>
+    <UL>
+    <LI><A HREF="#toc5">Resumen</A>
+    <LI><A HREF="#toc6">Objeto State</A>
+    <LI><A HREF="#toc7">Cambios de estado</A>
+    </UL>
+  <LI><A HREF="#toc8">Audio</A>
+    <UL>
+    <LI><A HREF="#toc9">Resumen</A>
+    </UL>
+  <LI><A HREF="#toc10">Colisiones</A>
+    <UL>
+    <LI><A HREF="#toc11">Resumen</A>
+    <LI><A HREF="#toc12">Atributos que intervienen</A>
+    <LI><A HREF="#toc13">Métodos</A>
+    <LI><A HREF="#toc14">¿Quien verifica colisiones?</A>
+    </UL>
+  <LI><A HREF="#toc15">Controles</A>
+    <UL>
+    <LI><A HREF="#toc16">Resumen</A>
+    </UL>
+  <LI><A HREF="#toc17">Debug</A>
+    <UL>
+    <LI><A HREF="#toc18">Resumen</A>
+    </UL>
+  <LI><A HREF="#toc19">Opciones</A>
+    <UL>
+    <LI><A HREF="#toc20">Resumen</A>
+    </UL>
+  <LI><A HREF="#toc21">Tomas</A>
+    <UL>
+    <LI><A HREF="#toc22">Resumen</A>
+    </UL>
+  <LI><A HREF="#toc23">Escenarios</A>
+    <UL>
+    <LI><A HREF="#toc24">Resumen</A>
+    <LI><A HREF="#toc25">Capas</A>
+      <UL>
+      <LI><A HREF="#toc26">Tamaños de capas</A>
+      </UL>
+    <LI><A HREF="#toc27">Colisiones con objectos</A>
+    </UL>
+  <LI><A HREF="#toc28">Indicadores de energía</A>
+    <UL>
+    <LI><A HREF="#toc29">Resumen</A>
+    <LI><A HREF="#toc30">Vista y modelo</A>
+      <UL>
+      <LI><A HREF="#toc31">Vista</A>
+      <LI><A HREF="#toc32">Modelo</A>
+      </UL>
+    </UL>
+  </UL>
+
+</DIV>
+<DIV CLASS="body" ID="body">
+<A NAME="toc1"></A>
+<H1>Introducción</H1>
+<P>
+Este documento describe varias caracterísicas de diseño en el videojuego
+<B>Shaolin's Blind Fury</B>. El motivo de este texto es alentar a nuevos
+desarrolladores a investigar el código del programa, adaptarlo a sus
+necesidades y/o mejorarlo.
+</P>
+<P>
+Puede obtener mas información sobre este programa visitando el sitio web del
+proyecto <A HREF="http://www.losersjuegos.com.ar">LosersJuegos</A>.
+</P>
+<A NAME="toc2"></A>
+<H1>Temática del juego</H1>
+<P>
+En el juego <B>Shaolin's Blind Fury</B> optamos por crear un juego de peleas
+callejeras clásico como <U>Captain Commando</U>, <U>Final Fight</U> o
+<U>Cadillacs and Dinosaurs</U>. En esta clase de juegos, el usuario controla
+a un personaje que debe luchar contra numerosos enemigos a <U>puño limpio</U>
+(o <U>puño sucio</U>, como prefiera...).
+</P>
+<A NAME="toc3"></A>
+<H1>Historia</H1>
+<P>
+Un estudiante de artes marciales ciego es víctima de un robo insólito,
+unos ninjas malvados ingresan en su templo y le roban sus 'ojos' 
+ficticios de vidrio, los cuales tienen el fantástico poder de invocar 
+seres super-poderosos de mundos paralelos.
+</P>
+<P>
+Nuestro protagonista sabe que dichos ojos esconden un terrible peligro
+si caen en manos equivocadas. Por ese motivo, el protagonista del juego
+debe <U>salir a las calles</U> en busca de su ojitos de cristal, pese a
+toda adversidad.
+</P>
+<A NAME="toc4"></A>
+<H1>Estados</H1>
+<A NAME="toc5"></A>
+<H2>Resumen</H2>
+<P>
+Cada personaje puede realizar diferentes acciones: correr, saltar, caminar.
+Cada una de estas acciones recibe el nombre de <I>estado</I>.
+</P>
+<P>
+En este videojuego se necesita implementar una gran cantidad de estados por
+personaje. Por lo tanto se ha optado implementar la gestión de estados
+mediante el patrón de diseño "State Pattern". Este patrón consiste en
+representar el comportamiento de cada estado mediante un objeto diferente, de
+forma tal que la transición entre un estado y otro sea dinámica y sencilla.
+</P>
+<P>
+Por ejemplo, el personaje principal del juego, <B>Player</B>, contiene una
+variable llamada 'state' que indica el estado actual del personaje. Cuando
+se tiene que altualizar el personaje, el mismo objeto se encarga de utilizar
+el objeto indicado por la variable <I>state</I>.
+</P>
+<PRE>
+#Personaje
+
+def update(...):
+    self.state.update()
+</PRE>
+<P></P>
+<P>
+De esta forma, cambiando el objeto referenciado por el atributo
+<I>state</I>, el personaje se comportará de forma diferente.
+</P>
+<A NAME="toc6"></A>
+<H2>Objeto State</H2>
+<P>
+Un estado se debe construir a partir de la clase State:
+</P>
+<PRE>
+#State
+
+def __init__(self, player):
+    ...
+
+def update(self):
+    ...
+</PRE>
+<P></P>
+<P>
+y debe re-definir el método <I>update</I>, desde donde tendrá acceso al personaje
+del juego desde el atributo <I>player</I>.
+</P>
+ <center><IMG ALIGN="middle" SRC="ima/states.png" BORDER="0" ALT=""></center> 
+<A NAME="toc7"></A>
+<H2>Cambios de estado</H2>
+<P>
+Si se quiere implementar un cambio de estado en el personaje debe llamar
+al método <I>change_state</I> de la clase <I>Player</I> y enviarle como parámetro 
+una instancia del nuevo estado.
+</P>
+<P>
+Por ejemplo, si queremos que el estado <I>Parado</I> le permita al usuario
+transitar al estado <I>saltar</I> o <I>caminar</I> mediante las teclas <I>up</I>, 
+<I>left</I> o <I>right</I>:
+</P>
+<PRE>
+#Parado
+
+def __init__(self, player):
+    State.__init__(self, player)
+
+def update(self):
+    
+    if self.player.control.up:
+        self.player.change_state(Saltar(self.player))
+
+    if self.player.control.left or self.player.control.right:
+        self.player.change_state(Caminar(self.player))
+</PRE>
+<P></P>
+<P>
+recordar que cada instancia de estado necesita una referencia al personaje que
+debe manipular. Esto posibilita que cada método `update` tenga la posibilidad
+de ordenar cambios de estado y manipular cualquier otra cosa relacionada
+con el personaje.
+</P>
+<A NAME="toc8"></A>
+<H1>Audio</H1>
+<A NAME="toc9"></A>
+<H2>Resumen</H2>
+<P>
+El módulo <I>common</I> contiene una referencia al objeto Audio, este
+objeto almacena todos los sonidos del juego, por lo tanto, si
+se quiere reproducir un sonido basta con escribir:
+</P>
+<PRE>
+from common import audio
+
+audio.play('punch1')
+</PRE>
+<P></P>
+<P>
+en general, <CODE>`audio.play(nombre_sonido)`</CODE> debería funcionar desde cualquier
+parte del programa...
+</P>
+<A NAME="toc10"></A>
+<H1>Colisiones</H1>
+<A NAME="toc11"></A>
+<H2>Resumen</H2>
+<P>
+Las colisiones permiten crear reacciones a los golpes y movimientos de todos
+los personajes del juego. Esta sección explica como funcionan las colisiones
+con objetos, enemigos y el protagonista.
+</P>
+<A NAME="toc12"></A>
+<H2>Atributos que intervienen</H2>
+<P>
+Las colisiones se verifican en base a rectángulos internos a cada instancia de
+objeto. La siguiente imágen muestra el nombre y representación visual de cada
+uno de estos rectángulos:
+</P>
+ <center><IMG ALIGN="middle" SRC="ima/collision.png" BORDER="0" ALT=""></center> 
+<A NAME="toc13"></A>
+<H2>Métodos</H2>
+<P>
+En la clase 'Player' existen varios métodos que realizan cálculos para
+determinar colisiones:
+</P>
+  <UL>
+  <LI>get_collision_receive() - informa si el personaje 'recibe' un golpe de otro personaje en la lista `enemies` de su propia instancia.
+  <P></P>
+  <LI>get_collision_send() - informa 'True' si el personaje está golpeando en ese instante a otro. Esto es útil cuando el personaje quiea incrementar su puntaje con cada golpe o mostrar una animación diferente cuando concreta un golpe.
+  <P></P>
+  <LI>set_collision() - se debe llamar para generar una rectángulo emisor de colisión. Por ejemplo, al momento de recibir el evento de la tecla 'golpear'.
+  <P></P>
+  <LI>unset_collision() - realiza el trabajo inverso al método `set_collision`, es decir, elimina el rectángulo que emite colisión.
+  </UL>
+
+<P>
+A su vez, los objetos de la clase <I>Enemy</I>, tienen métodos similares para
+determinar si el jugador los está golpeando:
+</P>
+  <UL>
+  <LI>get_collision_receive() - determina si el protagonista lo está golpeando.
+    También existe una variable <I>sensitive</I> que indica si el enemigo puede
+    recibir golpes en ese momento.
+  </UL>
+
+<A NAME="toc14"></A>
+<H2>¿Quien verifica colisiones?</H2>
+<P>
+Toda colisión se produce entre dos sprites, pero quién determina el
+<I>primer contacto</I> es el objeto receptor. Por ejemplo, el personaje del juego consulta
+en todo momento si alguien lo está golpeando. De igual forma los objetos del
+nivel (cajas, barriles ...) verifican constantemente cualquier tipo de
+colisión con ellos.
+</P>
+<A NAME="toc15"></A>
+<H1>Controles</H1>
+<A NAME="toc16"></A>
+<H2>Resumen</H2>
+<P>
+Para facilitar el acceso a cada una de las teclas de control, se ha creado
+la clase "Control". Así, cada personaje que se puede manipular desde
+el teclado delega la tarea de consultar los eventos del teclado a otro objeto.
+</P>
+<P>
+La ventaja de esta aproximación está permitir a los usuarios re-definir la
+función de cada tecla y ofreces teclas alternativas dentro del juego. Además
+se puede simplificar mucho el código, ya que cada personaje que se pueda
+manejar solo accede a aquellas teclas que se pueden utilizar y no al mapa
+de teclado completo.
+</P>
+<P>
+Al momento de crear un personaje <I>manejable</I> se le debe enviar una 
+instancia de la clase <I>Control</I>. Desde ahí, cada personaje consultara
+a su propia instancia control para tomar decisiones.
+</P>
+<P>
+<I>Control</I> actualiza 8 variables booleanas que indican eventos de control:
+</P>
+  <UL>
+  <LI>up
+  <LI>down
+  <LI>left
+  <LI>right
+  <LI>jump
+  <LI>attack
+  <LI>run
+  <LI>special
+  </UL>
+
+<P>
+Veamos un ejemplo, para consultar el estado de los controles se puede
+realizar lo siguiente:
+</P>
+<PRE>
+# Personaje
+
+def update(self):
+    
+    if self.control.up:
+        print "El personaje está subiendo"
+
+    if self.control.attack:
+        print "El personaje ataca"
+</PRE>
+<P></P>
+<P>
+de estas variables las primeras 6 están asociadas directamente a la pulsación
+de alguna tecla. Dicha relación se puede alterar desde el archivo
+`config.ini`.
+</P>
+<P>
+En cambio, las variables `run` y `special` son combinaciones de
+teclas habituales en esta clase de juegos. Por ejemplo:
+</P>
+  <UL>
+  <LI><B>run</B> vale <I>True</I> cuando el control detecta que se ha realizado la
+     combinación de teclas "izquierda, izquierda (dejando pulsado la segunda
+     vez)" o "derecha, derecha (dejando pulsado la segunda vez)". Esta
+     combinación es clásica en juegos como "Captain comando" o "The king of
+     fighters".
+  <P></P>
+  <LI><B>special</B> es similar, solo que la combinación es "abajo, arriba, golpe".
+    Aporta diversión a los jugadores que ya conocen el juego, porque les
+    permite hacer mucho daño a sus oponentes y es algo complicado de lograr.
+  </UL>
+
+<A NAME="toc17"></A>
+<H1>Debug</H1>
+<A NAME="toc18"></A>
+<H2>Resumen</H2>
+<P>
+En el módulo <I>common</I> existen varias constantes que se pueden habilitar para
+observar en pantalla posibles errores:
+</P>
+  <UL>
+  <LI>VISIBLE_DEBUG : muestra información geométrica de colisiones o límites, es
+    útil para corroborar que esta información (invisible) corresponde con los
+    gráficos del juego.
+  <P></P>
+  <LI>DEBUG : imprime por el terminal distintas verificaciones o pruebas
+    básicas. Toda prueba, aunque sea temporal, se debería poder desactivar
+    mediante esta variable.
+  <P></P>
+Veamos un ejemplo donde se utiliza esta constante:
+  <P></P>
+<PRE>
+if common.DEBUG:
+    print "alguna prueba..."
+</PRE>
+  </UL>
+
+<A NAME="toc19"></A>
+<H1>Opciones</H1>
+<A NAME="toc20"></A>
+<H2>Resumen</H2>
+<P>
+Los parámetros de configuración se encuentran en la clase <I>Options</I>. Una
+instancia única de esta clase se puede encontrar dentro del módulo <I>common</I>.
+</P>
+<A NAME="toc21"></A>
+<H1>Tomas</H1>
+<A NAME="toc22"></A>
+<H2>Resumen</H2>
+<P>
+El protagonista del juego puede sujetar a otros personajes. De manera similar
+a como ocurre en otros videojuegos del género, nuestro personaje puede golpear
+al enemigo sujetado o bien arrojarlo hacia uno de los laterales.
+</P>
+<P>
+Para sujetar a un enemigo el protagonista debe estar caminando hacia 'arriba' o 'abajo'. Y además tiene que estar muy cerca de su oponente.
+</P>
+<P>
+Estos son los mensajes que intercambian los personajes para operar:
+</P>
+<PRE>
+player.check_collision_to_take():        # verifica cualquier colision con enemigos.
+ enemy.can_take()                        # si existe una colision con alguno, le pregunta 
+                                         # si se puede sujetar.
+  player.change_state(TakeEnemy(enemy))  # cambia de estado y muestra la nueva animación.
+  enemy.take()                           # sujeta al enemigo.
+  enemy.leave()                          # suelta al enemigo.
+</PRE>
+<A NAME="toc23"></A>
+<H1>Escenarios</H1>
+<A NAME="toc24"></A>
+<H2>Resumen</H2>
+<P>
+Los escenarios del juego son diferentes en cada etapa, cada uno puede estar
+compuesto de diferentes capas que simulan profundidad o lejanía.
+</P>
+<A NAME="toc25"></A>
+<H2>Capas</H2>
+<P>
+Las capas son imagenes separadas que simulan profundiada en el escenario.
+Cada capa se desplaza en pantalla a diferentes velocidades.
+</P>
+<A NAME="toc26"></A>
+<H3>Tamaños de capas</H3>
+<TABLE BORDER="1">
+<TR>
+<TD>Nombre</TD>
+<TD>Tamaño</TD>
+</TR>
+<TR>
+<TD>layer 1</TD>
+<TD>X</TD>
+</TR>
+<TR>
+<TD>layer 2</TD>
+<TD>(X + 640) / 1.5</TD>
+</TR>
+<TR>
+<TD>layer 3</TD>
+<TD>(X + 640) / 2</TD>
+</TR>
+</TABLE>
+
+<P></P>
+<A NAME="toc27"></A>
+<H2>Colisiones con objectos</H2>
+<A NAME="toc28"></A>
+<H1>Indicadores de energía</H1>
+<A NAME="toc29"></A>
+<H2>Resumen</H2>
+<P>
+Cada personaje del juego tiene un grado de energía, que representa
+la vitalidad del mismo. A medida que el personaje recibe golpes
+este indicador de energía disminuye. Cuando el indicador llega a
+0, el personaje muere.
+</P>
+<A NAME="toc30"></A>
+<H2>Vista y modelo</H2>
+<P>
+Existen dos clases que actuan en conjunto para representar la enegía
+de un personaje.
+</P>
+<A NAME="toc31"></A>
+<H3>Vista</H3>
+<P>
+La clase <I>EnergyView</I> se encarga de representar
+la energía en la pantalla del juego, de forma que el jugador
+pueda conocer la energía de un enemigo o protagonista. Se puede
+observar en la misma un indicador, el nombre del personaje y una
+pequeña minuatura de su rostro:
+</P>
+<P>
+<IMG ALIGN="middle" SRC="ima/energy_view.png" BORDER="0" ALT="">
+</P>
+<A NAME="toc32"></A>
+<H3>Modelo</H3>
+<P>
+Pero en el juego puede existir muchos personajes al mismo tiempo en
+pantalla, y no se muestra un indicador <I>EnergyView</I> por cada uno. En
+su lugar, cada personaje tiene modelo de energía: una clase que
+representa los datos a mostrar, pero que es invisible. Básicamente el
+procedimiento dentro del juego permite que el usuario solo vea los
+modelos de energía atraves del componente <I>EnergyView</I>.
+</P>
+</DIV>
+
+<!-- html code generated by txt2tags 2.3 (http://txt2tags.sf.net) -->
+<!-- cmdline: txt2tags -t html -\-toc -\-css-sugar -\-style style.css -\-encoding utf-8 como_funciona.t2t -->
+</BODY></HTML>

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>shaolin.editor.editor</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="shaolin-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="www.losersjuegos.com.ar">Shaolin's Blind Fury</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="shaolin-module.html">Package&nbsp;shaolin</a> ::
+        <a href="shaolin.editor-module.html">Package&nbsp;editor</a> ::
+        Module&nbsp;editor
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="shaolin.editor.editor-module.html">Module shaolin.editor.editor</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Shaolin's Blind Fury</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007 2008 Hugo Ruscitti &lt;hugoruscitti@gmail.com&gt;</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://www.losersjuegos.com.ar</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># This program is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># the Free Software Foundation; either version 3 of the License, or</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># along with this program; if not, see http://www.gnu.org/licenses</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pygame</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module shaolin.stage=shaolin.stage-module.html"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-0', 'stage', 'link-0');">stage</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module shaolin.group=shaolin.group-module.html"><a title="shaolin.group" class="py-name" href="#" onclick="return doclink('link-1', 'group', 'link-1');">group</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module shaolin.editor.camera=shaolin.editor.camera-module.html"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-2', 'camera', 'link-2');">camera</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module shaolin.editor.mouse=shaolin.editor.mouse-module.html"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-3', 'mouse', 'link-3');">mouse</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Module shaolin.editor.button=shaolin.editor.button-module.html"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-4', 'button', 'link-4');">button</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Module shaolin.common=shaolin.common-module.html"><a title="shaolin.common" class="py-name" href="#" onclick="return doclink('link-5', 'common', 'link-5');">common</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-6" class="py-name" targets="Module shaolin.editor.status=shaolin.editor.status-module.html"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-6', 'status', 'link-6');">status</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Module shaolin.editor.cursor=shaolin.editor.cursor-module.html"><a title="shaolin.editor.cursor" class="py-name" href="#" onclick="return doclink('link-7', 'cursor', 'link-7');">cursor</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Module shaolin.config=shaolin.config-module.html"><a title="shaolin.config" class="py-name" href="#" onclick="return doclink('link-8', 'config', 'link-8');">config</a></tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-9" class="py-name" targets="Module shaolin.game=shaolin.game-module.html"><a title="shaolin.game" class="py-name" href="#" onclick="return doclink('link-9', 'game', 'link-9');">game</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="Editor"></a><div id="Editor-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="Editor-toggle" onclick="return toggle('Editor');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html">Editor</a><tt class="py-op">:</tt> </tt>
+</div><div id="Editor-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Editor-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="Editor.__init__"></a><div id="Editor.__init__-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="Editor.__init__-toggle" onclick="return toggle('Editor.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">world</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.__init__-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Module shaolin.world=shaolin.world-module.html"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-10', 'world', 'link-10');">world</a></tt> <tt class="py-op">=</tt> <tt id="link-11" class="py-name"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-11', 'world', 'link-10');">world</a></tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites</tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name"><a title="shaolin.group" class="py-name" href="#" onclick="return doclink('link-12', 'group', 'link-1');">group</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Class shaolin.group.Group=shaolin.group.Group-class.html"><a title="shaolin.group.Group" class="py-name" href="#" onclick="return doclink('link-13', 'Group', 'link-13');">Group</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-14', 'stage', 'link-0');">stage</a></tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-15', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Class shaolin.stage.Stage=shaolin.stage.Stage-class.html"><a title="shaolin.stage.Stage" class="py-name" href="#" onclick="return doclink('link-16', 'Stage', 'link-16');">Stage</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-17', 'camera', 'link-2');">camera</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-18', 'stage', 'link-0');">stage</a></tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites_in_front</tt> <tt class="py-op">=</tt> <tt class="py-name">pygame</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Module shaolin.sprite=shaolin.sprite-module.html"><a title="shaolin.sprite" class="py-name" href="#" onclick="return doclink('link-19', 'sprite', 'link-19');">sprite</a></tt><tt class="py-op">.</tt><tt class="py-name">RenderPlain</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-20', 'camera', 'link-2');">camera</a></tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-21', 'camera', 'link-2');">camera</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Class shaolin.editor.camera.Camera=shaolin.editor.camera.Camera-class.html"><a title="shaolin.editor.camera.Camera" class="py-name" href="#" onclick="return doclink('link-22', 'Camera', 'link-22');">Camera</a></tt><tt class="py-op">(</tt><tt class="py-number">320</tt><tt class="py-op">,</tt> <tt class="py-number">5000</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-23', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt class="py-name">object_to_follow</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-24', 'camera', 'link-2');">camera</a></tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-25', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Method shaolin.stage.Stage.load_level()=shaolin.stage.Stage-class.html#load_level"><a title="shaolin.stage.Stage.load_level" class="py-name" href="#" onclick="return doclink('link-26', 'load_level', 'link-26');">load_level</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-27', 'mouse', 'link-3');">mouse</a></tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-28', 'mouse', 'link-3');">mouse</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Class shaolin.editor.mouse.Mouse=shaolin.editor.mouse.Mouse-class.html"><a title="shaolin.editor.mouse.Mouse" class="py-name" href="#" onclick="return doclink('link-29', 'Mouse', 'link-29');">Mouse</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="shaolin.editor.cursor" class="py-name" href="#" onclick="return doclink('link-30', 'cursor', 'link-7');">cursor</a></tt> <tt class="py-op">=</tt> <tt id="link-31" class="py-name"><a title="shaolin.editor.cursor" class="py-name" href="#" onclick="return doclink('link-31', 'cursor', 'link-7');">cursor</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Class shaolin.editor.cursor.Cursor=shaolin.editor.cursor.Cursor-class.html,Class shaolin.menu.Cursor=shaolin.menu.Cursor-class.html"><a title="shaolin.editor.cursor.Cursor
+shaolin.menu.Cursor" class="py-name" href="#" onclick="return doclink('link-32', 'Cursor', 'link-32');">Cursor</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="shaolin.editor.cursor" class="py-name" href="#" onclick="return doclink('link-33', 'cursor', 'link-7');">cursor</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Method shaolin.editor.editor.Editor._create_status()=shaolin.editor.editor.Editor-class.html#_create_status"><a title="shaolin.editor.editor.Editor._create_status" class="py-name" href="#" onclick="return doclink('link-34', '_create_status', 'link-34');">_create_status</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Method shaolin.editor.editor.Editor._create_ui()=shaolin.editor.editor.Editor-class.html#_create_ui"><a title="shaolin.editor.editor.Editor._create_ui" class="py-name" href="#" onclick="return doclink('link-35', '_create_ui', 'link-35');">_create_ui</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="Editor._create_status"></a><div id="Editor._create_status-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="Editor._create_status-toggle" onclick="return toggle('Editor._create_status');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#_create_status">_create_status</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor._create_status-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor._create_status-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-36', 'status', 'link-6');">status</a></tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-37', 'status', 'link-6');">status</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name" targets="Class shaolin.editor.status.Status=shaolin.editor.status.Status-class.html"><a title="shaolin.editor.status.Status" class="py-name" href="#" onclick="return doclink('link-38', 'Status', 'link-38');">Status</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-39', 'world', 'link-10');">world</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Module shaolin.font=shaolin.font-module.html"><a title="shaolin.font" class="py-name" href="#" onclick="return doclink('link-40', 'font', 'link-40');">font</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites_in_front</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-41', 'status', 'link-6');">status</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="Editor._create_ui"></a><div id="Editor._create_ui-def"><a name="L55"></a><tt class="py-lineno"> 55</tt> <a class="py-toggle" href="#" id="Editor._create_ui-toggle" onclick="return toggle('Editor._create_ui');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#_create_ui">_create_ui</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor._create_ui-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor._create_ui-expanded"><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buttons</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-name">ui</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-string">"quit"</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name" targets="Method shaolin.editor.editor.Editor.do_quit()=shaolin.editor.editor.Editor-class.html#do_quit"><a title="shaolin.editor.editor.Editor.do_quit" class="py-name" href="#" onclick="return doclink('link-42', 'do_quit', 'link-42');">do_quit</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-string">"save"</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Method shaolin.editor.editor.Editor.do_save()=shaolin.editor.editor.Editor-class.html#do_save"><a title="shaolin.editor.editor.Editor.do_save" class="py-name" href="#" onclick="return doclink('link-43', 'do_save', 'link-43');">do_save</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-string">"previous"</tt><tt class="py-op">,</tt> <tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name" targets="Method shaolin.editor.editor.Editor.do_previous()=shaolin.editor.editor.Editor-class.html#do_previous"><a title="shaolin.editor.editor.Editor.do_previous" class="py-name" href="#" onclick="return doclink('link-44', 'do_previous', 'link-44');">do_previous</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-string">"next"</tt><tt class="py-op">,</tt> <tt class="py-number">4</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name" targets="Method shaolin.editor.editor.Editor.do_next()=shaolin.editor.editor.Editor-class.html#do_next"><a title="shaolin.editor.editor.Editor.do_next" class="py-name" href="#" onclick="return doclink('link-45', 'do_next', 'link-45');">do_next</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">                <tt class="py-op">(</tt><tt class="py-string">"test"</tt><tt class="py-op">,</tt> <tt class="py-number">6</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Method shaolin.editor.editor.Editor.do_test()=shaolin.editor.editor.Editor-class.html#do_test"><a title="shaolin.editor.editor.Editor.do_test" class="py-name" href="#" onclick="return doclink('link-46', 'do_test', 'link-46');">do_test</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                <tt class="py-op">]</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">stage_objects</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">                <tt class="py-string">"box"</tt><tt class="py-op">,</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">                <tt class="py-string">"stonea"</tt><tt class="py-op">,</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">                <tt class="py-string">"stoneb"</tt><tt class="py-op">,</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt class="py-string">"miscstonea"</tt><tt class="py-op">,</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                <tt class="py-string">"miscstoneb"</tt><tt class="py-op">,</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt class="py-string">"miscstonec"</tt><tt class="py-op">,</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt class="py-string">"light"</tt><tt class="py-op">,</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                <tt class="py-string">"dark"</tt><tt class="py-op">,</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                <tt class="py-string">"camera_stop"</tt><tt class="py-op">,</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                <tt class="py-string">"fatninja"</tt><tt class="py-op">,</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                <tt class="py-string">"lamp"</tt><tt class="py-op">,</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                <tt class="py-string">"border_back"</tt><tt class="py-op">,</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-string">"border_front"</tt><tt class="py-op">,</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-op">]</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">b</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ui</tt><tt class="py-op">:</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">            <tt class="py-name">type</tt><tt class="py-op">,</tt> <tt class="py-name">column</tt><tt class="py-op">,</tt> <tt class="py-name">row</tt><tt class="py-op">,</tt> <tt class="py-name">callback</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt id="link-47" class="py-name"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-47', 'button', 'link-4');">button</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Class shaolin.editor.button.Button=shaolin.editor.button.Button-class.html"><a title="shaolin.editor.button.Button" class="py-name" href="#" onclick="return doclink('link-48', 'Button', 'link-48');">Button</a></tt><tt class="py-op">(</tt><tt class="py-name">type</tt><tt class="py-op">,</tt> <tt class="py-name">column</tt><tt class="py-op">,</tt> <tt class="py-name">row</tt><tt class="py-op">,</tt> <tt class="py-name">callback</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-49', 'status', 'link-6');">status</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buttons</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">column</tt> <tt class="py-op">=</tt> <tt class="py-number">9</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">row</tt> <tt class="py-op">=</tt> <tt class="py-number">3</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">callback</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-50" class="py-name" targets="Method shaolin.editor.editor.Editor.do_select_object()=shaolin.editor.editor.Editor-class.html#do_select_object"><a title="shaolin.editor.editor.Editor.do_select_object" class="py-name" href="#" onclick="return doclink('link-50', 'do_select_object', 'link-50');">do_select_object</a></tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">b</tt> <tt class="py-keyword">in</tt> <tt class="py-name">stage_objects</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">            <tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">            <tt class="py-name">new</tt> <tt class="py-op">=</tt> <tt id="link-51" class="py-name"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-51', 'button', 'link-4');">button</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="shaolin.editor.button.Button" class="py-name" href="#" onclick="return doclink('link-52', 'Button', 'link-48');">Button</a></tt><tt class="py-op">(</tt><tt class="py-name">type</tt><tt class="py-op">,</tt> <tt class="py-name">column</tt><tt class="py-op">,</tt> <tt class="py-name">row</tt><tt class="py-op">,</tt> <tt class="py-name">callback</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-53', 'status', 'link-6');">status</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buttons</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">new</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">column</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">10</tt><tt class="py-op">:</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                <tt class="py-name">row</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">column</tt> <tt class="py-op">=</tt> <tt class="py-number">9</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                <tt class="py-name">column</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites_in_front</tt><tt class="py-op">.</tt><tt class="py-name">add</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buttons</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_quit"></a><div id="Editor.do_quit-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="Editor.do_quit-toggle" onclick="return toggle('Editor.do_quit');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_quit">do_quit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_quit-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_quit-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="shaolin.editor.editor.Editor.do_save" class="py-name" href="#" onclick="return doclink('link-54', 'do_save', 'link-43');">do_save</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-55', 'world', 'link-10');">world</a></tt><tt class="py-op">.</tt><tt class="py-name">quit</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_save"></a><div id="Editor.do_save-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="Editor.do_save-toggle" onclick="return toggle('Editor.do_save');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_save">do_save</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_save-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_save-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-56', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name" targets="Method shaolin.stage.Stage.save()=shaolin.stage.Stage-class.html#save"><a title="shaolin.stage.Stage.save" class="py-name" href="#" onclick="return doclink('link-57', 'save', 'link-57');">save</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-58', 'status', 'link-6');">status</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name" targets="Method shaolin.editor.status.Status.set_text()=shaolin.editor.status.Status-class.html#set_text"><a title="shaolin.editor.status.Status.set_text" class="py-name" href="#" onclick="return doclink('link-59', 'set_text', 'link-59');">set_text</a></tt><tt class="py-op">(</tt><tt class="py-string">"Saving stage ..."</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_test"></a><div id="Editor.do_test-def"><a name="L110"></a><tt class="py-lineno">110</tt> <a class="py-toggle" href="#" id="Editor.do_test-toggle" onclick="return toggle('Editor.do_test');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_test">do_test</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_test-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_test-expanded"><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="shaolin.editor.editor.Editor.do_save" class="py-name" href="#" onclick="return doclink('link-60', 'do_save', 'link-43');">do_save</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-61', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt class="py-name">object_to_follow</tt><tt class="py-op">.</tt><tt class="py-name">x</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">level</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-62" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-62', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt class="py-name">level</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">gametest</tt> <tt class="py-op">=</tt> <tt id="link-63" class="py-name"><a title="shaolin.game" class="py-name" href="#" onclick="return doclink('link-63', 'game', 'link-9');">game</a></tt><tt class="py-op">.</tt><tt id="link-64" class="py-name" targets="Class shaolin.game.GameTestLevel=shaolin.game.GameTestLevel-class.html"><a title="shaolin.game.GameTestLevel" class="py-name" href="#" onclick="return doclink('link-64', 'GameTestLevel', 'link-64');">GameTestLevel</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-65', 'world', 'link-10');">world</a></tt><tt class="py-op">,</tt> <tt class="py-name">level</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">dx</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="shaolin.world" class="py-name" href="#" onclick="return doclink('link-66', 'world', 'link-10');">world</a></tt><tt class="py-op">.</tt><tt id="link-67" class="py-name" targets="Method shaolin.enemies.enemy.Enemy.change_state()=shaolin.enemies.enemy.Enemy-class.html#change_state,Method shaolin.player.player.Player.change_state()=shaolin.player.player.Player-class.html#change_state,Method shaolin.world.World.change_state()=shaolin.world.World-class.html#change_state"><a title="shaolin.enemies.enemy.Enemy.change_state
+shaolin.player.player.Player.change_state
+shaolin.world.World.change_state" class="py-name" href="#" onclick="return doclink('link-67', 'change_state', 'link-67');">change_state</a></tt><tt class="py-op">(</tt><tt class="py-name">gametest</tt><tt class="py-op">,</tt> <tt class="py-name">do_animate</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_previous"></a><div id="Editor.do_previous-def"><a name="L117"></a><tt class="py-lineno">117</tt> <a class="py-toggle" href="#" id="Editor.do_previous-toggle" onclick="return toggle('Editor.do_previous');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_previous">do_previous</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_previous-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_previous-expanded"><a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-name">ok</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-68', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-69" class="py-name" targets="Method shaolin.stage.Stage.previous()=shaolin.stage.Stage-class.html#previous"><a title="shaolin.stage.Stage.previous" class="py-name" href="#" onclick="return doclink('link-69', 'previous', 'link-69');">previous</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ok</tt><tt class="py-op">:</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-70', 'status', 'link-6');">status</a></tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="shaolin.editor.status.Status.set_text" class="py-name" href="#" onclick="return doclink('link-71', 'set_text', 'link-59');">set_text</a></tt><tt class="py-op">(</tt><tt class="py-string">"I can't go to previous level (it exists?)"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_next"></a><div id="Editor.do_next-def"><a name="L123"></a><tt class="py-lineno">123</tt> <a class="py-toggle" href="#" id="Editor.do_next-toggle" onclick="return toggle('Editor.do_next');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_next">do_next</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_next-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_next-expanded"><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-name">ok</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-72', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name" targets="Method shaolin.stage.Stage.next()=shaolin.stage.Stage-class.html#next"><a title="shaolin.stage.Stage.next" class="py-name" href="#" onclick="return doclink('link-73', 'next', 'link-73');">next</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">ok</tt><tt class="py-op">:</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-74', 'status', 'link-6');">status</a></tt><tt class="py-op">.</tt><tt id="link-75" class="py-name"><a title="shaolin.editor.status.Status.set_text" class="py-name" href="#" onclick="return doclink('link-75', 'set_text', 'link-59');">set_text</a></tt><tt class="py-op">(</tt><tt class="py-string">"I can't go to next level (it exists?)"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="Editor.do_select_object"></a><div id="Editor.do_select_object-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="Editor.do_select_object-toggle" onclick="return toggle('Editor.do_select_object');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#do_select_object">do_select_object</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">button</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.do_select_object-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.do_select_object-expanded"><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-76" class="py-name"><a title="shaolin.editor.status" class="py-name" href="#" onclick="return doclink('link-76', 'status', 'link-6');">status</a></tt><tt class="py-op">.</tt><tt id="link-77" class="py-name"><a title="shaolin.editor.status.Status.set_text" class="py-name" href="#" onclick="return doclink('link-77', 'set_text', 'link-59');">set_text</a></tt><tt class="py-op">(</tt><tt class="py-string">"You has select a '%s' object"</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt id="link-78" class="py-name"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-78', 'button', 'link-4');">button</a></tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-79" class="py-name"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-79', 'mouse', 'link-3');">mouse</a></tt><tt class="py-op">.</tt><tt class="py-name">selected_object</tt> <tt class="py-op">=</tt> <tt id="link-80" class="py-name"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-80', 'button', 'link-4');">button</a></tt><tt class="py-op">.</tt><tt class="py-name">name</tt> </tt>
+</div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
+<a name="Editor.handle_event"></a><div id="Editor.handle_event-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="Editor.handle_event-toggle" onclick="return toggle('Editor.handle_event');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#handle_event">handle_event</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">event</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.handle_event-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.handle_event-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">event</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-op">==</tt> <tt class="py-name">pygame</tt><tt class="py-op">.</tt><tt class="py-name">MOUSEBUTTONDOWN</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-81', 'mouse', 'link-3');">mouse</a></tt><tt class="py-op">.</tt><tt id="link-82" class="py-name" targets="Method shaolin.editor.mouse.Mouse.on_click_event()=shaolin.editor.mouse.Mouse-class.html#on_click_event"><a title="shaolin.editor.mouse.Mouse.on_click_event" class="py-name" href="#" onclick="return doclink('link-82', 'on_click_event', 'link-82');">on_click_event</a></tt><tt class="py-op">(</tt><tt class="py-name">event</tt><tt class="py-op">.</tt><tt id="link-83" class="py-name"><a title="shaolin.editor.button" class="py-name" href="#" onclick="return doclink('link-83', 'button', 'link-4');">button</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="Editor.update"></a><div id="Editor.update-def"><a name="L137"></a><tt class="py-lineno">137</tt> <a class="py-toggle" href="#" id="Editor.update-toggle" onclick="return toggle('Editor.update');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#update">update</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.update-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.update-expanded"><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-docstring">"Actualizaci&#243;n l&#243;gica."</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-84" class="py-name"><a title="shaolin.editor.camera" class="py-name" href="#" onclick="return doclink('link-84', 'camera', 'link-2');">camera</a></tt><tt class="py-op">.</tt><tt id="link-85" class="py-name" targets="Method shaolin.control.Control.update()=shaolin.control.Control-class.html#update,Method shaolin.editor.button.Button.update()=shaolin.editor.button.Button-class.html#update,Method shaolin.editor.camera.Camera.update()=shaolin.editor.camera.Camera-class.html#update,Method shaolin.editor.cursor.Cursor.update()=shaolin.editor.cursor.Cursor-class.html#update,Method shaolin.editor.editor.Editor.update()=shaolin.editor.editor.Editor-class.html#update,Method shaolin.editor.mouse.Mouse.update()=shaolin.editor.mouse.Mouse-class.html#update,Method shaolin.editor.status.Status.update()=shaolin.editor.status.Status-class.html#update,Method shaolin.enemies.enemy.Enemy.update()=shaolin.enemies.enemy.Enemy-class.html#update,Method shaolin.enemies.state.Attack.update()=shaolin.enemies.state.Attack-class.html#update,Method shaolin.enemies.state.AttackTake.update()=shaolin.enemies.state.AttackTake-class.html#update,Method shaolin.enemies.state.Die.update()=shaolin.enemies.state.Die-class.html#update,Method shaolin.enemies.state.Ground.update()=shaolin.enemies.state.Ground-class.html#update,Method shaolin.enemies.state.GroundToStand.update()=shaolin.enemies.state.GroundToStand-class.html#update,Method shaolin.enemies.state.HardHit.update()=shaolin.enemies.state.HardHit-class.html#update,Method shaolin.enemies.state.HitStand.update()=shaolin.enemies.state.HitStand-class.html#update,Method shaolin.enemies.state.HitTaked.update()=shaolin.enemies.state.HitTaked-class.html#update,Method shaolin.enemies.state.Stand.update()=shaolin.enemies.state.Stand-class.html#update,Method shaolin.enemies.state.State.update()=shaolin.enemies.state.State-class.html#update,Method shaolin.enemies.state.Taked.update()=shaolin.enemies.state.Taked-class.html#update,Method shaolin.enemies.state.Throwed.update()=shaolin.enemies.state.Throwed-class.html#update,Method shaolin.enemies.state.WalkToPlayer.update()=shaolin.enemies.state.WalkToPlayer-class.html#update,Method shaolin.energy.EnergyView.update()=shaolin.energy.EnergyView-class.html#update,Method shaolin.fps.FPS.update()=shaolin.fps.FPS-class.html#update,Method shaolin.game.Game.update()=shaolin.game.Game-class.html#update,Method shaolin.game.GameTestLevel.update()=shaolin.game.GameTestLevel-class.html#update,Method shaolin.hit.Hit.update()=shaolin.hit.Hit-class.html#update,Method shaolin.menu.Cursor.update()=shaolin.menu.Cursor-class.html#update,Method shaolin.menu.ItemMenu.update()=shaolin.menu.ItemMenu-class.html#update,Method shaolin.menu.ItemMenuWithState.update()=shaolin.menu.ItemMenuWithState-class.html#update,Method shaolin.menu.ItemMenuWithVolume.update()=shaolin.menu.ItemMenuWithVolume-class.html#update,Method shaolin.menu.Menu.update()=shaolin.menu.Menu-class.html#update,Method shaolin.object.Object.update()=shaolin.object.Object-class.html#update,Method shaolin.player.bandage.Bandage.update()=shaolin.player.bandage.Bandage-class.html#update,Method shaolin.player.player.Player.update()=shaolin.player.player.Player-class.html#update,Method shaolin.player.state.Attack.update()=shaolin.player.state.Attack-class.html#update,Method shaolin.player.state.AttackJump.update()=shaolin.player.state.AttackJump-class.html#update,Method shaolin.player.state.AttackJumpRun.update()=shaolin.player.state.AttackJumpRun-class.html#update,Method shaolin.player.state.AttackRun.update()=shaolin.player.state.AttackRun-class.html#update,Method shaolin.player.state.AttackTake.update()=shaolin.player.state.AttackTake-class.html#update,Method shaolin.player.state.AttackTakeAndJump.update()=shaolin.player.state.AttackTakeAndJump-class.html#update,Method shaolin.player.state.Ground.update()=shaolin.player.state.Ground-class.html#update,Method shaolin.player.state.GroundToStand.update()=shaolin.player.state.GroundToStand-class.html#update,Method shaolin.player.state.HardHit.update()=shaolin.player.state.HardHit-class.html#update,Method shaolin.player.state.HitStand.update()=shaolin.player.state.HitStand-class.html#update,Method shaolin.player.state.HitTaked.update()=shaolin.player.state.HitTaked-class.html#update,Method shaolin.player.state.Jump.update()=shaolin.player.state.Jump-class.html#update,Method shaolin.player.state.JumpRun.update()=shaolin.player.state.JumpRun-class.html#update,Method shaolin.player.state.JumpStand.update()=shaolin.player.state.JumpStand-class.html#update,Method shaolin.player.state.JumpWalk.update()=shaolin.player.state.JumpWalk-class.html#update,Method shaolin.player.state.Run.update()=shaolin.player.state.Run-class.html#update,Method shaolin.player.state.Special.update()=shaolin.player.state.Special-class.html#update,Method shaolin.player.state.Stand.update()=shaolin.player.state.Stand-class.html#update,Method shaolin.player.state.Starting.update()=shaolin.player.state.Starting-class.html#update,Method shaolin.player.state.State.update()=shaolin.player.state.State-class.html#update,Method shaolin.player.state.Take.update()=shaolin.player.state.Take-class.html#update,Method shaolin.player.state.Taked.update()=shaolin.player.state.Taked-class.html#update,Method shaolin.player.state.Throw.update()=shaolin.player.state.Throw-class.html#update,Method shaolin.player.state.Throwed.update()=shaolin.player.state.Throwed-class.html#update,Method shaolin.player.state.Walk.update()=shaolin.player.state.Walk-class.html#update,Method shaolin.scenes.about.About.update()=shaolin.scenes.about.About-class.html#update,Method shaolin.scenes.logo.Logo.update()=shaolin.scenes.logo.Logo-class.html#update,Method shaolin.scenes.logo.LogoSpriteAnimated.update()=shaolin.scenes.logo.LogoSpriteAnimated-class.html#update,Method shaolin.scenes.mainmenu.MainMenu.update()=shaolin.scenes.mainmenu.MainMenu-class.html#update,Method shaolin.scenes.options.Options.update()=shaolin.scenes.options.Options-class.html#update,Method shaolin.scenes.transition.Transition.update()=shaolin.scenes.transition.Transition-class.html#update,Method shaolin.shadow.Shadow.update()=shaolin.shadow.Shadow-class.html#update,Method shaolin.sprite.SpriteAnimated.update()=shaolin.sprite.SpriteAnimated-class.html#update,Method shaolin.stage.Stage.update()=shaolin.stage.Stage-class.html#update,Method shaolin.stageobject.DestroyableStageObject.update()=shaolin.stageobject.DestroyableStageObject-class.html#update,Method shaolin.stageobject.ObjectPart.update()=shaolin.stageobject.ObjectPart-class.html#update,Method shaolin.text.Text.update()=shaolin.text.Text-class.html#update"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-85', 'update', 'link-85');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-86" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-86', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-87" class="py-name"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-87', 'update', 'link-85');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-88" class="py-name"><a title="shaolin.editor.mouse" class="py-name" href="#" onclick="return doclink('link-88', 'mouse', 'link-3');">mouse</a></tt><tt class="py-op">.</tt><tt id="link-89" class="py-name"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-89', 'update', 'link-85');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites_in_front</tt><tt class="py-op">.</tt><tt id="link-90" class="py-name"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-90', 'update', 'link-85');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="Editor.draw"></a><div id="Editor.draw-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="Editor.draw-toggle" onclick="return toggle('Editor.draw');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#draw">draw</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screen</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.draw-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.draw-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-docstring">"Actualiza la pantalla."</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-91" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-91', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-92" class="py-name" targets="Method shaolin.editor.editor.Editor.draw()=shaolin.editor.editor.Editor-class.html#draw,Method shaolin.game.Game.draw()=shaolin.game.Game-class.html#draw,Method shaolin.group.Group.draw()=shaolin.group.Group-class.html#draw,Method shaolin.scenes.about.About.draw()=shaolin.scenes.about.About-class.html#draw,Method shaolin.scenes.logo.Logo.draw()=shaolin.scenes.logo.Logo-class.html#draw,Method shaolin.scenes.mainmenu.MainMenu.draw()=shaolin.scenes.mainmenu.MainMenu-class.html#draw,Method shaolin.scenes.options.Options.draw()=shaolin.scenes.options.Options-class.html#draw,Method shaolin.stage.Stage.draw()=shaolin.stage.Stage-class.html#draw"><a title="shaolin.editor.editor.Editor.draw
+shaolin.game.Game.draw
+shaolin.group.Group.draw
+shaolin.scenes.about.About.draw
+shaolin.scenes.logo.Logo.draw
+shaolin.scenes.mainmenu.MainMenu.draw
+shaolin.scenes.options.Options.draw
+shaolin.stage.Stage.draw" class="py-name" href="#" onclick="return doclink('link-92', 'draw', 'link-92');">draw</a></tt><tt class="py-op">(</tt><tt class="py-name">screen</tt><tt class="py-op">)</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites</tt><tt class="py-op">.</tt><tt id="link-93" class="py-name"><a title="shaolin.editor.editor.Editor.draw
+shaolin.game.Game.draw
+shaolin.group.Group.draw
+shaolin.scenes.about.About.draw
+shaolin.scenes.logo.Logo.draw
+shaolin.scenes.mainmenu.MainMenu.draw
+shaolin.scenes.options.Options.draw
+shaolin.stage.Stage.draw" class="py-name" href="#" onclick="return doclink('link-93', 'draw', 'link-92');">draw</a></tt><tt class="py-op">(</tt><tt class="py-name">screen</tt><tt class="py-op">)</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-94" class="py-name"><a title="shaolin.stage" class="py-name" href="#" onclick="return doclink('link-94', 'stage', 'link-0');">stage</a></tt><tt class="py-op">.</tt><tt id="link-95" class="py-name" targets="Method shaolin.stage.Stage.last_draw()=shaolin.stage.Stage-class.html#last_draw"><a title="shaolin.stage.Stage.last_draw" class="py-name" href="#" onclick="return doclink('link-95', 'last_draw', 'link-95');">last_draw</a></tt><tt class="py-op">(</tt><tt class="py-name">screen</tt><tt class="py-op">)</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sprites_in_front</tt><tt class="py-op">.</tt><tt id="link-96" class="py-name"><a title="shaolin.editor.editor.Editor.draw
+shaolin.game.Game.draw
+shaolin.group.Group.draw
+shaolin.scenes.about.About.draw
+shaolin.scenes.logo.Logo.draw
+shaolin.scenes.mainmenu.MainMenu.draw
+shaolin.scenes.options.Options.draw
+shaolin.stage.Stage.draw" class="py-name" href="#" onclick="return doclink('link-96', 'draw', 'link-92');">draw</a></tt><tt class="py-op">(</tt><tt class="py-name">screen</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">pygame</tt><tt class="py-op">.</tt><tt class="py-name">display</tt><tt class="py-op">.</tt><tt class="py-name">flip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"> </tt>
+<a name="Editor.get_button_at"></a><div id="Editor.get_button_at-def"><a name="L152"></a><tt class="py-lineno">152</tt> <a class="py-toggle" href="#" id="Editor.get_button_at-toggle" onclick="return toggle('Editor.get_button_at');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.editor.editor.Editor-class.html#get_button_at">get_button_at</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">x</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Editor.get_button_at-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Editor.get_button_at-expanded"><a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-docstring">"Devuelve una referencia al bot&#243;n apuntado por el cursor."</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">b</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">buttons</tt><tt class="py-op">:</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">rect</tt><tt class="py-op">.</tt><tt class="py-name">collidepoint</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">,</tt> <tt class="py-name">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">b</tt> </tt>
+</div></div><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="shaolin-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="www.losersjuegos.com.ar">Shaolin's Blind Fury</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sun Feb 17 04:09:56 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

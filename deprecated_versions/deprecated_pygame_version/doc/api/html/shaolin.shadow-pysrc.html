@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>shaolin.shadow</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="shaolin-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="www.losersjuegos.com.ar">Shaolin's Blind Fury</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="shaolin-module.html">Package&nbsp;shaolin</a> ::
+        Module&nbsp;shadow
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="shaolin.shadow-module.html">Module shaolin.shadow</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Shaolin's Blind Fury</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># Copyright 2007 2008 Hugo Ruscitti &lt;hugoruscitti@gmail.com&gt;</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># http://www.losersjuegos.com.ar</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># This program is free software; you can redistribute it and/or modify</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># the Free Software Foundation; either version 3 of the License, or</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment"># along with this program; if not, see http://www.gnu.org/licenses</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pygame</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Module shaolin.object=shaolin.object-module.html"><a title="shaolin.object" class="py-name" href="#" onclick="return doclink('link-0', 'object', 'link-0');">object</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class shaolin.object.Object=shaolin.object.Object-class.html"><a title="shaolin.object.Object" class="py-name" href="#" onclick="return doclink('link-1', 'Object', 'link-1');">Object</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Module shaolin.common=shaolin.common-module.html"><a title="shaolin.common" class="py-name" href="#" onclick="return doclink('link-2', 'common', 'link-2');">common</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Variable shaolin.config.DATADIR=shaolin.config-module.html#DATADIR"><a title="shaolin.config.DATADIR" class="py-name" href="#" onclick="return doclink('link-3', 'DATADIR', 'link-3');">DATADIR</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Function shaolin.common.load_image()=shaolin.common-module.html#load_image"><a title="shaolin.common.load_image" class="py-name" href="#" onclick="return doclink('link-4', 'load_image', 'link-4');">load_image</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Module shaolin.config=shaolin.config-module.html"><a title="shaolin.config" class="py-name" href="#" onclick="return doclink('link-5', 'config', 'link-5');">config</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="Shadow"></a><div id="Shadow-def"><a name="L25"></a><tt class="py-lineno">25</tt> <a class="py-toggle" href="#" id="Shadow-toggle" onclick="return toggle('Shadow');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="shaolin.shadow.Shadow-class.html">Shadow</a><tt class="py-op">(</tt><tt class="py-base-class">Object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Shadow-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Shadow-expanded"><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-docstring">"Muestra una sombra debajo de alg&#250;n personaje."</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">     </tt>
+<a name="Shadow.__init__"></a><div id="Shadow.__init__-def"><a name="L28"></a><tt class="py-lineno">28</tt> <a class="py-toggle" href="#" id="Shadow.__init__-toggle" onclick="return toggle('Shadow.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.shadow.Shadow-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">player</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Shadow.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Shadow.__init__-expanded"><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">        <tt id="link-6" class="py-name"><a title="shaolin.object.Object" class="py-name" href="#" onclick="return doclink('link-6', 'Object', 'link-1');">Object</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method shaolin.animation.Animation.__init__()=shaolin.animation.Animation-class.html#__init__,Method shaolin.animation.SimpleAnimation.__init__()=shaolin.animation.SimpleAnimation-class.html#__init__,Method shaolin.audio.Audio.__init__()=shaolin.audio.Audio-class.html#__init__,Method shaolin.control.Control.__init__()=shaolin.control.Control-class.html#__init__,Method shaolin.editor.button.Button.__init__()=shaolin.editor.button.Button-class.html#__init__,Method shaolin.editor.camera.Camera.__init__()=shaolin.editor.camera.Camera-class.html#__init__,Method shaolin.editor.cursor.Cursor.__init__()=shaolin.editor.cursor.Cursor-class.html#__init__,Method shaolin.editor.editor.Editor.__init__()=shaolin.editor.editor.Editor-class.html#__init__,Method shaolin.editor.mouse.Mouse.__init__()=shaolin.editor.mouse.Mouse-class.html#__init__,Method shaolin.editor.status.Status.__init__()=shaolin.editor.status.Status-class.html#__init__,Method shaolin.enemies.enemy.Enemy.__init__()=shaolin.enemies.enemy.Enemy-class.html#__init__,Method shaolin.enemies.state.Attack.__init__()=shaolin.enemies.state.Attack-class.html#__init__,Method shaolin.enemies.state.AttackTake.__init__()=shaolin.enemies.state.AttackTake-class.html#__init__,Method shaolin.enemies.state.Die.__init__()=shaolin.enemies.state.Die-class.html#__init__,Method shaolin.enemies.state.Ground.__init__()=shaolin.enemies.state.Ground-class.html#__init__,Method shaolin.enemies.state.GroundToStand.__init__()=shaolin.enemies.state.GroundToStand-class.html#__init__,Method shaolin.enemies.state.HardHit.__init__()=shaolin.enemies.state.HardHit-class.html#__init__,Method shaolin.enemies.state.HitStand.__init__()=shaolin.enemies.state.HitStand-class.html#__init__,Method shaolin.enemies.state.HitTaked.__init__()=shaolin.enemies.state.HitTaked-class.html#__init__,Method shaolin.enemies.state.Stand.__init__()=shaolin.enemies.state.Stand-class.html#__init__,Method shaolin.enemies.state.State.__init__()=shaolin.enemies.state.State-class.html#__init__,Method shaolin.enemies.state.Taked.__init__()=shaolin.enemies.state.Taked-class.html#__init__,Method shaolin.enemies.state.Throwed.__init__()=shaolin.enemies.state.Throwed-class.html#__init__,Method shaolin.enemies.state.WalkToPlayer.__init__()=shaolin.enemies.state.WalkToPlayer-class.html#__init__,Method shaolin.energy.EnergyModel.__init__()=shaolin.energy.EnergyModel-class.html#__init__,Method shaolin.energy.EnergyView.__init__()=shaolin.energy.EnergyView-class.html#__init__,Method shaolin.font.Font.__init__()=shaolin.font.Font-class.html#__init__,Method shaolin.fps.FPS.__init__()=shaolin.fps.FPS-class.html#__init__,Method shaolin.frames.Frames.__init__()=shaolin.frames.Frames-class.html#__init__,Method shaolin.game.Game.__init__()=shaolin.game.Game-class.html#__init__,Method shaolin.game.GameTestLevel.__init__()=shaolin.game.GameTestLevel-class.html#__init__,Method shaolin.group.Group.__init__()=shaolin.group.Group-class.html#__init__,Method shaolin.hit.Hit.__init__()=shaolin.hit.Hit-class.html#__init__,Method shaolin.menu.Cursor.__init__()=shaolin.menu.Cursor-class.html#__init__,Method shaolin.menu.ItemMenu.__init__()=shaolin.menu.ItemMenu-class.html#__init__,Method shaolin.menu.ItemMenuWithState.__init__()=shaolin.menu.ItemMenuWithState-class.html#__init__,Method shaolin.menu.ItemMenuWithVolume.__init__()=shaolin.menu.ItemMenuWithVolume-class.html#__init__,Method shaolin.menu.Menu.__init__()=shaolin.menu.Menu-class.html#__init__,Method shaolin.object.Object.__init__()=shaolin.object.Object-class.html#__init__,Method shaolin.options.Options.__init__()=shaolin.options.Options-class.html#__init__,Method shaolin.player.bandage.Bandage.__init__()=shaolin.player.bandage.Bandage-class.html#__init__,Method shaolin.player.player.Player.__init__()=shaolin.player.player.Player-class.html#__init__,Method shaolin.player.state.Attack.__init__()=shaolin.player.state.Attack-class.html#__init__,Method shaolin.player.state.AttackJump.__init__()=shaolin.player.state.AttackJump-class.html#__init__,Method shaolin.player.state.AttackJumpRun.__init__()=shaolin.player.state.AttackJumpRun-class.html#__init__,Method shaolin.player.state.AttackJumpStand.__init__()=shaolin.player.state.AttackJumpStand-class.html#__init__,Method shaolin.player.state.AttackJumpWalk.__init__()=shaolin.player.state.AttackJumpWalk-class.html#__init__,Method shaolin.player.state.AttackRun.__init__()=shaolin.player.state.AttackRun-class.html#__init__,Method shaolin.player.state.AttackTake.__init__()=shaolin.player.state.AttackTake-class.html#__init__,Method shaolin.player.state.AttackTakeAndJump.__init__()=shaolin.player.state.AttackTakeAndJump-class.html#__init__,Method shaolin.player.state.Ground.__init__()=shaolin.player.state.Ground-class.html#__init__,Method shaolin.player.state.GroundToStand.__init__()=shaolin.player.state.GroundToStand-class.html#__init__,Method shaolin.player.state.HardHit.__init__()=shaolin.player.state.HardHit-class.html#__init__,Method shaolin.player.state.HitStand.__init__()=shaolin.player.state.HitStand-class.html#__init__,Method shaolin.player.state.HitTaked.__init__()=shaolin.player.state.HitTaked-class.html#__init__,Method shaolin.player.state.Jump.__init__()=shaolin.player.state.Jump-class.html#__init__,Method shaolin.player.state.JumpRun.__init__()=shaolin.player.state.JumpRun-class.html#__init__,Method shaolin.player.state.JumpStand.__init__()=shaolin.player.state.JumpStand-class.html#__init__,Method shaolin.player.state.JumpWalk.__init__()=shaolin.player.state.JumpWalk-class.html#__init__,Method shaolin.player.state.Run.__init__()=shaolin.player.state.Run-class.html#__init__,Method shaolin.player.state.Special.__init__()=shaolin.player.state.Special-class.html#__init__,Method shaolin.player.state.Stand.__init__()=shaolin.player.state.Stand-class.html#__init__,Method shaolin.player.state.Starting.__init__()=shaolin.player.state.Starting-class.html#__init__,Method shaolin.player.state.State.__init__()=shaolin.player.state.State-class.html#__init__,Method shaolin.player.state.Take.__init__()=shaolin.player.state.Take-class.html#__init__,Method shaolin.player.state.Taked.__init__()=shaolin.player.state.Taked-class.html#__init__,Method shaolin.player.state.Throw.__init__()=shaolin.player.state.Throw-class.html#__init__,Method shaolin.player.state.Throwed.__init__()=shaolin.player.state.Throwed-class.html#__init__,Method shaolin.player.state.Walk.__init__()=shaolin.player.state.Walk-class.html#__init__,Method shaolin.scenes.about.About.__init__()=shaolin.scenes.about.About-class.html#__init__,Method shaolin.scenes.logo.Logo.__init__()=shaolin.scenes.logo.Logo-class.html#__init__,Method shaolin.scenes.logo.LogoSpriteAnimated.__init__()=shaolin.scenes.logo.LogoSpriteAnimated-class.html#__init__,Method shaolin.scenes.mainmenu.MainMenu.__init__()=shaolin.scenes.mainmenu.MainMenu-class.html#__init__,Method shaolin.scenes.options.Options.__init__()=shaolin.scenes.options.Options-class.html#__init__,Method shaolin.scenes.transition.Transition.__init__()=shaolin.scenes.transition.Transition-class.html#__init__,Method shaolin.shadow.Shadow.__init__()=shaolin.shadow.Shadow-class.html#__init__,Method shaolin.sprite.Sprite.__init__()=shaolin.sprite.Sprite-class.html#__init__,Method shaolin.sprite.SpriteAnimated.__init__()=shaolin.sprite.SpriteAnimated-class.html#__init__,Method shaolin.stage.Stage.__init__()=shaolin.stage.Stage-class.html#__init__,Method shaolin.stageobject.DestroyableStageObject.__init__()=shaolin.stageobject.DestroyableStageObject-class.html#__init__,Method shaolin.stageobject.ObjectPart.__init__()=shaolin.stageobject.ObjectPart-class.html#__init__,Method shaolin.stageobject.StageObject.__init__()=shaolin.stageobject.StageObject-class.html#__init__,Method shaolin.text.Text.__init__()=shaolin.text.Text-class.html#__init__,Method shaolin.world.World.__init__()=shaolin.world.World-class.html#__init__"><a title="shaolin.animation.Animation.__init__
+shaolin.animation.SimpleAnimation.__init__
+shaolin.audio.Audio.__init__
+shaolin.control.Control.__init__
+shaolin.editor.button.Button.__init__
+shaolin.editor.camera.Camera.__init__
+shaolin.editor.cursor.Cursor.__init__
+shaolin.editor.editor.Editor.__init__
+shaolin.editor.mouse.Mouse.__init__
+shaolin.editor.status.Status.__init__
+shaolin.enemies.enemy.Enemy.__init__
+shaolin.enemies.state.Attack.__init__
+shaolin.enemies.state.AttackTake.__init__
+shaolin.enemies.state.Die.__init__
+shaolin.enemies.state.Ground.__init__
+shaolin.enemies.state.GroundToStand.__init__
+shaolin.enemies.state.HardHit.__init__
+shaolin.enemies.state.HitStand.__init__
+shaolin.enemies.state.HitTaked.__init__
+shaolin.enemies.state.Stand.__init__
+shaolin.enemies.state.State.__init__
+shaolin.enemies.state.Taked.__init__
+shaolin.enemies.state.Throwed.__init__
+shaolin.enemies.state.WalkToPlayer.__init__
+shaolin.energy.EnergyModel.__init__
+shaolin.energy.EnergyView.__init__
+shaolin.font.Font.__init__
+shaolin.fps.FPS.__init__
+shaolin.frames.Frames.__init__
+shaolin.game.Game.__init__
+shaolin.game.GameTestLevel.__init__
+shaolin.group.Group.__init__
+shaolin.hit.Hit.__init__
+shaolin.menu.Cursor.__init__
+shaolin.menu.ItemMenu.__init__
+shaolin.menu.ItemMenuWithState.__init__
+shaolin.menu.ItemMenuWithVolume.__init__
+shaolin.menu.Menu.__init__
+shaolin.object.Object.__init__
+shaolin.options.Options.__init__
+shaolin.player.bandage.Bandage.__init__
+shaolin.player.player.Player.__init__
+shaolin.player.state.Attack.__init__
+shaolin.player.state.AttackJump.__init__
+shaolin.player.state.AttackJumpRun.__init__
+shaolin.player.state.AttackJumpStand.__init__
+shaolin.player.state.AttackJumpWalk.__init__
+shaolin.player.state.AttackRun.__init__
+shaolin.player.state.AttackTake.__init__
+shaolin.player.state.AttackTakeAndJump.__init__
+shaolin.player.state.Ground.__init__
+shaolin.player.state.GroundToStand.__init__
+shaolin.player.state.HardHit.__init__
+shaolin.player.state.HitStand.__init__
+shaolin.player.state.HitTaked.__init__
+shaolin.player.state.Jump.__init__
+shaolin.player.state.JumpRun.__init__
+shaolin.player.state.JumpStand.__init__
+shaolin.player.state.JumpWalk.__init__
+shaolin.player.state.Run.__init__
+shaolin.player.state.Special.__init__
+shaolin.player.state.Stand.__init__
+shaolin.player.state.Starting.__init__
+shaolin.player.state.State.__init__
+shaolin.player.state.Take.__init__
+shaolin.player.state.Taked.__init__
+shaolin.player.state.Throw.__init__
+shaolin.player.state.Throwed.__init__
+shaolin.player.state.Walk.__init__
+shaolin.scenes.about.About.__init__
+shaolin.scenes.logo.Logo.__init__
+shaolin.scenes.logo.LogoSpriteAnimated.__init__
+shaolin.scenes.mainmenu.MainMenu.__init__
+shaolin.scenes.options.Options.__init__
+shaolin.scenes.transition.Transition.__init__
+shaolin.shadow.Shadow.__init__
+shaolin.sprite.Sprite.__init__
+shaolin.sprite.SpriteAnimated.__init__
+shaolin.stage.Stage.__init__
+shaolin.stageobject.DestroyableStageObject.__init__
+shaolin.stageobject.ObjectPart.__init__
+shaolin.stageobject.StageObject.__init__
+shaolin.text.Text.__init__
+shaolin.world.World.__init__" class="py-name" href="#" onclick="return doclink('link-7', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Package shaolin.player=shaolin.player-module.html,Module shaolin.player.player=shaolin.player.player-module.html"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-8', 'player', 'link-8');">player</a></tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-9', 'player', 'link-8');">player</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">image</tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="shaolin.common.load_image" class="py-name" href="#" onclick="return doclink('link-10', 'load_image', 'link-4');">load_image</a></tt><tt class="py-op">(</tt><tt class="py-string">'shadow.png'</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="shaolin.config.DATADIR" class="py-name" href="#" onclick="return doclink('link-11', 'DATADIR', 'link-3');">DATADIR</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rect</tt> <tt class="py-op">=</tt> <tt class="py-name">pygame</tt><tt class="py-op">.</tt><tt class="py-name">Rect</tt><tt class="py-op">(</tt><tt id="link-12" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-12', 'player', 'link-8');">player</a></tt><tt class="py-op">.</tt><tt class="py-name">x</tt><tt class="py-op">,</tt> <tt id="link-13" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-13', 'player', 'link-8');">player</a></tt><tt class="py-op">.</tt><tt class="py-name">y</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xoffset</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">image</tt><tt class="py-op">.</tt><tt class="py-name">get_width</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-number">2</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="Shadow.update"></a><div id="Shadow.update-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="Shadow.update-toggle" onclick="return toggle('Shadow.update');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.shadow.Shadow-class.html#update">update</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Shadow.update-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Shadow.update-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="Shadow.update_from_parent"></a><div id="Shadow.update_from_parent-def"><a name="L38"></a><tt class="py-lineno">38</tt> <a class="py-toggle" href="#" id="Shadow.update_from_parent-toggle" onclick="return toggle('Shadow.update_from_parent');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.shadow.Shadow-class.html#update_from_parent">update_from_parent</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Shadow.update_from_parent-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Shadow.update_from_parent-expanded"><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rect</tt><tt class="py-op">.</tt><tt class="py-name">x</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-14', 'player', 'link-8');">player</a></tt><tt class="py-op">.</tt><tt class="py-name">x</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">xoffset</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rect</tt><tt class="py-op">.</tt><tt class="py-name">y</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-15', 'player', 'link-8');">player</a></tt><tt class="py-op">.</tt><tt class="py-name">y</tt> <tt class="py-op">-</tt> <tt class="py-number">20</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">        <tt class="py-comment"># desaparece junto al personaje del juego</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="shaolin.player
+shaolin.player.player" class="py-name" href="#" onclick="return doclink('link-16', 'player', 'link-8');">player</a></tt><tt class="py-op">.</tt><tt class="py-name">live</tt><tt class="py-op">:</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">image</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="shaolin.common.load_image" class="py-name" href="#" onclick="return doclink('link-17', 'load_image', 'link-4');">load_image</a></tt><tt class="py-op">(</tt><tt class="py-string">'shadow_to_disolve.png'</tt><tt class="py-op">,</tt> <tt id="link-18" class="py-name"><a title="shaolin.config.DATADIR" class="py-name" href="#" onclick="return doclink('link-18', 'DATADIR', 'link-3');">DATADIR</a></tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i</tt> <tt class="py-op">=</tt> <tt class="py-number">20</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Method shaolin.control.Control.update()=shaolin.control.Control-class.html#update,Method shaolin.editor.button.Button.update()=shaolin.editor.button.Button-class.html#update,Method shaolin.editor.camera.Camera.update()=shaolin.editor.camera.Camera-class.html#update,Method shaolin.editor.cursor.Cursor.update()=shaolin.editor.cursor.Cursor-class.html#update,Method shaolin.editor.editor.Editor.update()=shaolin.editor.editor.Editor-class.html#update,Method shaolin.editor.mouse.Mouse.update()=shaolin.editor.mouse.Mouse-class.html#update,Method shaolin.editor.status.Status.update()=shaolin.editor.status.Status-class.html#update,Method shaolin.enemies.enemy.Enemy.update()=shaolin.enemies.enemy.Enemy-class.html#update,Method shaolin.enemies.state.Attack.update()=shaolin.enemies.state.Attack-class.html#update,Method shaolin.enemies.state.AttackTake.update()=shaolin.enemies.state.AttackTake-class.html#update,Method shaolin.enemies.state.Die.update()=shaolin.enemies.state.Die-class.html#update,Method shaolin.enemies.state.Ground.update()=shaolin.enemies.state.Ground-class.html#update,Method shaolin.enemies.state.GroundToStand.update()=shaolin.enemies.state.GroundToStand-class.html#update,Method shaolin.enemies.state.HardHit.update()=shaolin.enemies.state.HardHit-class.html#update,Method shaolin.enemies.state.HitStand.update()=shaolin.enemies.state.HitStand-class.html#update,Method shaolin.enemies.state.HitTaked.update()=shaolin.enemies.state.HitTaked-class.html#update,Method shaolin.enemies.state.Stand.update()=shaolin.enemies.state.Stand-class.html#update,Method shaolin.enemies.state.State.update()=shaolin.enemies.state.State-class.html#update,Method shaolin.enemies.state.Taked.update()=shaolin.enemies.state.Taked-class.html#update,Method shaolin.enemies.state.Throwed.update()=shaolin.enemies.state.Throwed-class.html#update,Method shaolin.enemies.state.WalkToPlayer.update()=shaolin.enemies.state.WalkToPlayer-class.html#update,Method shaolin.energy.EnergyView.update()=shaolin.energy.EnergyView-class.html#update,Method shaolin.fps.FPS.update()=shaolin.fps.FPS-class.html#update,Method shaolin.game.Game.update()=shaolin.game.Game-class.html#update,Method shaolin.game.GameTestLevel.update()=shaolin.game.GameTestLevel-class.html#update,Method shaolin.hit.Hit.update()=shaolin.hit.Hit-class.html#update,Method shaolin.menu.Cursor.update()=shaolin.menu.Cursor-class.html#update,Method shaolin.menu.ItemMenu.update()=shaolin.menu.ItemMenu-class.html#update,Method shaolin.menu.ItemMenuWithState.update()=shaolin.menu.ItemMenuWithState-class.html#update,Method shaolin.menu.ItemMenuWithVolume.update()=shaolin.menu.ItemMenuWithVolume-class.html#update,Method shaolin.menu.Menu.update()=shaolin.menu.Menu-class.html#update,Method shaolin.object.Object.update()=shaolin.object.Object-class.html#update,Method shaolin.player.bandage.Bandage.update()=shaolin.player.bandage.Bandage-class.html#update,Method shaolin.player.player.Player.update()=shaolin.player.player.Player-class.html#update,Method shaolin.player.state.Attack.update()=shaolin.player.state.Attack-class.html#update,Method shaolin.player.state.AttackJump.update()=shaolin.player.state.AttackJump-class.html#update,Method shaolin.player.state.AttackJumpRun.update()=shaolin.player.state.AttackJumpRun-class.html#update,Method shaolin.player.state.AttackRun.update()=shaolin.player.state.AttackRun-class.html#update,Method shaolin.player.state.AttackTake.update()=shaolin.player.state.AttackTake-class.html#update,Method shaolin.player.state.AttackTakeAndJump.update()=shaolin.player.state.AttackTakeAndJump-class.html#update,Method shaolin.player.state.Ground.update()=shaolin.player.state.Ground-class.html#update,Method shaolin.player.state.GroundToStand.update()=shaolin.player.state.GroundToStand-class.html#update,Method shaolin.player.state.HardHit.update()=shaolin.player.state.HardHit-class.html#update,Method shaolin.player.state.HitStand.update()=shaolin.player.state.HitStand-class.html#update,Method shaolin.player.state.HitTaked.update()=shaolin.player.state.HitTaked-class.html#update,Method shaolin.player.state.Jump.update()=shaolin.player.state.Jump-class.html#update,Method shaolin.player.state.JumpRun.update()=shaolin.player.state.JumpRun-class.html#update,Method shaolin.player.state.JumpStand.update()=shaolin.player.state.JumpStand-class.html#update,Method shaolin.player.state.JumpWalk.update()=shaolin.player.state.JumpWalk-class.html#update,Method shaolin.player.state.Run.update()=shaolin.player.state.Run-class.html#update,Method shaolin.player.state.Special.update()=shaolin.player.state.Special-class.html#update,Method shaolin.player.state.Stand.update()=shaolin.player.state.Stand-class.html#update,Method shaolin.player.state.Starting.update()=shaolin.player.state.Starting-class.html#update,Method shaolin.player.state.State.update()=shaolin.player.state.State-class.html#update,Method shaolin.player.state.Take.update()=shaolin.player.state.Take-class.html#update,Method shaolin.player.state.Taked.update()=shaolin.player.state.Taked-class.html#update,Method shaolin.player.state.Throw.update()=shaolin.player.state.Throw-class.html#update,Method shaolin.player.state.Throwed.update()=shaolin.player.state.Throwed-class.html#update,Method shaolin.player.state.Walk.update()=shaolin.player.state.Walk-class.html#update,Method shaolin.scenes.about.About.update()=shaolin.scenes.about.About-class.html#update,Method shaolin.scenes.logo.Logo.update()=shaolin.scenes.logo.Logo-class.html#update,Method shaolin.scenes.logo.LogoSpriteAnimated.update()=shaolin.scenes.logo.LogoSpriteAnimated-class.html#update,Method shaolin.scenes.mainmenu.MainMenu.update()=shaolin.scenes.mainmenu.MainMenu-class.html#update,Method shaolin.scenes.options.Options.update()=shaolin.scenes.options.Options-class.html#update,Method shaolin.scenes.transition.Transition.update()=shaolin.scenes.transition.Transition-class.html#update,Method shaolin.shadow.Shadow.update()=shaolin.shadow.Shadow-class.html#update,Method shaolin.sprite.SpriteAnimated.update()=shaolin.sprite.SpriteAnimated-class.html#update,Method shaolin.stage.Stage.update()=shaolin.stage.Stage-class.html#update,Method shaolin.stageobject.DestroyableStageObject.update()=shaolin.stageobject.DestroyableStageObject-class.html#update,Method shaolin.stageobject.ObjectPart.update()=shaolin.stageobject.ObjectPart-class.html#update,Method shaolin.text.Text.update()=shaolin.text.Text-class.html#update"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-19', 'update', 'link-19');">update</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method shaolin.shadow.Shadow.update_fadeout()=shaolin.shadow.Shadow-class.html#update_fadeout"><a title="shaolin.shadow.Shadow.update_fadeout" class="py-name" href="#" onclick="return doclink('link-20', 'update_fadeout', 'link-20');">update_fadeout</a></tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="shaolin.control.Control.update
+shaolin.editor.button.Button.update
+shaolin.editor.camera.Camera.update
+shaolin.editor.cursor.Cursor.update
+shaolin.editor.editor.Editor.update
+shaolin.editor.mouse.Mouse.update
+shaolin.editor.status.Status.update
+shaolin.enemies.enemy.Enemy.update
+shaolin.enemies.state.Attack.update
+shaolin.enemies.state.AttackTake.update
+shaolin.enemies.state.Die.update
+shaolin.enemies.state.Ground.update
+shaolin.enemies.state.GroundToStand.update
+shaolin.enemies.state.HardHit.update
+shaolin.enemies.state.HitStand.update
+shaolin.enemies.state.HitTaked.update
+shaolin.enemies.state.Stand.update
+shaolin.enemies.state.State.update
+shaolin.enemies.state.Taked.update
+shaolin.enemies.state.Throwed.update
+shaolin.enemies.state.WalkToPlayer.update
+shaolin.energy.EnergyView.update
+shaolin.fps.FPS.update
+shaolin.game.Game.update
+shaolin.game.GameTestLevel.update
+shaolin.hit.Hit.update
+shaolin.menu.Cursor.update
+shaolin.menu.ItemMenu.update
+shaolin.menu.ItemMenuWithState.update
+shaolin.menu.ItemMenuWithVolume.update
+shaolin.menu.Menu.update
+shaolin.object.Object.update
+shaolin.player.bandage.Bandage.update
+shaolin.player.player.Player.update
+shaolin.player.state.Attack.update
+shaolin.player.state.AttackJump.update
+shaolin.player.state.AttackJumpRun.update
+shaolin.player.state.AttackRun.update
+shaolin.player.state.AttackTake.update
+shaolin.player.state.AttackTakeAndJump.update
+shaolin.player.state.Ground.update
+shaolin.player.state.GroundToStand.update
+shaolin.player.state.HardHit.update
+shaolin.player.state.HitStand.update
+shaolin.player.state.HitTaked.update
+shaolin.player.state.Jump.update
+shaolin.player.state.JumpRun.update
+shaolin.player.state.JumpStand.update
+shaolin.player.state.JumpWalk.update
+shaolin.player.state.Run.update
+shaolin.player.state.Special.update
+shaolin.player.state.Stand.update
+shaolin.player.state.Starting.update
+shaolin.player.state.State.update
+shaolin.player.state.Take.update
+shaolin.player.state.Taked.update
+shaolin.player.state.Throw.update
+shaolin.player.state.Throwed.update
+shaolin.player.state.Walk.update
+shaolin.scenes.about.About.update
+shaolin.scenes.logo.Logo.update
+shaolin.scenes.logo.LogoSpriteAnimated.update
+shaolin.scenes.mainmenu.MainMenu.update
+shaolin.scenes.options.Options.update
+shaolin.scenes.transition.Transition.update
+shaolin.shadow.Shadow.update
+shaolin.sprite.SpriteAnimated.update
+shaolin.stage.Stage.update
+shaolin.stageobject.DestroyableStageObject.update
+shaolin.stageobject.ObjectPart.update
+shaolin.text.Text.update" class="py-name" href="#" onclick="return doclink('link-21', 'update', 'link-19');">update</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"> </tt>
+<a name="Shadow.update_fadeout"></a><div id="Shadow.update_fadeout-def"><a name="L49"></a><tt class="py-lineno">49</tt> <a class="py-toggle" href="#" id="Shadow.update_fadeout-toggle" onclick="return toggle('Shadow.update_fadeout');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="shaolin.shadow.Shadow-class.html#update_fadeout">update_fadeout</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Shadow.update_fadeout-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Shadow.update_fadeout-expanded"><a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">image</tt><tt class="py-op">.</tt><tt class="py-name">set_alpha</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i</tt> <tt class="py-op">-=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method shaolin.enemies.enemy.Enemy.kill()=shaolin.enemies.enemy.Enemy-class.html#kill,Method shaolin.player.player.Player.kill()=shaolin.player.player.Player-class.html#kill"><a title="shaolin.enemies.enemy.Enemy.kill
+shaolin.player.player.Player.kill" class="py-name" href="#" onclick="return doclink('link-22', 'kill', 'link-22');">kill</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="shaolin-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="www.losersjuegos.com.ar">Shaolin's Blind Fury</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sun Feb 17 04:09:54 2008
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

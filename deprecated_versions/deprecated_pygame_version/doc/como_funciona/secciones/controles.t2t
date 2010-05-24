@@ -1,0 +1,73 @@
+Controles
+Hugo Ruscitti
+0.1
+
+
+
+= Controles =
+
+
+== Resumen ==
+
+Para facilitar el acceso a cada una de las teclas de control, se ha creado
+la clase "Control". Así, cada personaje que se puede manipular desde
+el teclado delega la tarea de consultar los eventos del teclado a otro objeto.
+
+La ventaja de esta aproximación está permitir a los usuarios re-definir la
+función de cada tecla y ofreces teclas alternativas dentro del juego. Además
+se puede simplificar mucho el código, ya que cada personaje que se pueda
+manejar solo accede a aquellas teclas que se pueden utilizar y no al mapa
+de teclado completo.
+
+Al momento de crear un personaje //manejable// se le debe enviar una 
+instancia de la clase //Control//. Desde ahí, cada personaje consultara
+a su propia instancia control para tomar decisiones.
+
+//Control// actualiza 8 variables booleanas que indican eventos de control:
+
+  - up
+  - down
+  - left
+  - right
+  - jump
+  - attack
+  - run
+  - special
+
+
+
+
+Veamos un ejemplo, para consultar el estado de los controles se puede
+realizar lo siguiente:
+
+```
+# Personaje
+
+def update(self):
+    
+    if self.control.up:
+        print "El personaje está subiendo"
+
+    if self.control.attack:
+        print "El personaje ataca"
+```
+
+de estas variables las primeras 6 están asociadas directamente a la pulsación
+de alguna tecla. Dicha relación se puede alterar desde el archivo
+`config.ini`.
+
+En cambio, las variables `run` y `special` son combinaciones de
+teclas habituales en esta clase de juegos. Por ejemplo:
+
+  - **run** vale //True// cuando el control detecta que se ha realizado la
+     combinación de teclas "izquierda, izquierda (dejando pulsado la segunda
+     vez)" o "derecha, derecha (dejando pulsado la segunda vez)". Esta
+     combinación es clásica en juegos como "Captain comando" o "The king of
+     fighters".
+
+  - **special** es similar, solo que la combinación es "abajo, arriba, golpe".
+    Aporta diversión a los jugadores que ya conocen el juego, porque les
+    permite hacer mucho daño a sus oponentes y es algo complicado de lograr.
+
+
+
