@@ -18,7 +18,7 @@ FULLSCREEN = False
 if FULLSCREEN:
     app = sf.RenderWindow(sf.VideoMode(720, 480), "sbfury", sf.Style.Fullscreen)
 else:
-    app = sf.RenderWindow(sf.VideoMode(720, 480), "sbfury")
+    app = sf.RenderWindow(sf.VideoMode(720, 480), "sbfury", sf.Style.Titlebar)
     app.SetPosition(300, 200)
 
 
@@ -29,7 +29,7 @@ input = app.GetInput()
 clock = sf.Clock()
 color = sf.Color(200, 200, 200)
 
-app.UseVerticalSync(True)
+app.UseVerticalSync(False)
 
 control = control.Control(input)
 
@@ -37,7 +37,6 @@ player = shaolin.Shaolin(control)
 next_tick = get_tick()
 
 while True:
-    dt = app.GetFrameTime()
     app.Clear(color)
     app.Draw(player)
     app.Draw(player.shadow)

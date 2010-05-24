@@ -48,7 +48,7 @@ class Shaolin(sf.Sprite):
                 ('starting', 3, 1),
                 ('take', 1, 1),
                 ('throw', 3, 1),
-                ('walk', 4, 0.2),
+                ('walk', 4, 0.5),
                 ]
 
         # each elements has an animation like: 'stand': AnimationObject()...

@@ -66,7 +66,7 @@ class Walk(State):
     def update(self):
         c = self.player.control
         self.player.update_animation()
-        velocity = 300 * 1
+        velocity = 6
         dx = 0
         dy = 0
 
@@ -136,7 +136,7 @@ class Run(State):
 
     def update(self):
         self.player.update_animation()
-        velocity = 10
+        velocity = 8
         c = self.player.control
 
         if self.player.do_fall_if_are_in_air():
@@ -428,7 +428,7 @@ class Jump(State):
     '''
 
     def update(self):
-        speed = 1 * 100
+        speed = 5
         self.soft_dx = 0
         self.soft_dy = 0
 

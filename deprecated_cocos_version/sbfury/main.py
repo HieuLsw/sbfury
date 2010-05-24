@@ -5,7 +5,7 @@ import common
 import scene
 
 def main():
-    pyglet.options['debug_gl'] = config.DEBUG_GL
+    #pyglet.options['debug_gl'] = config.DEBUG_GL
 
     window = common.director.init(resizable=True, vsync=config.VSYNC)
 
