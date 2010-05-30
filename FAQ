@@ -1,3 +1,7 @@
+Respuestas a las preguntas mas frecuentes
+=========================================
+
+
 ¿Por qué hay tantos directorios deprecated_*?
 ---------------------------------------------
 
@@ -5,3 +9,5 @@ Porque inicialmente shaolin se desarrolaba utilizando
 la biblioteca pygame, pero luego se realizaron varias
 pruebas para obtener mejor rendimiento... cada directorio
 deprecated_* representa una de esas pruebas.
+
+Al final de todas las pruebas se optó por cocos2d.
