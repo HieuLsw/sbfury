@@ -7,7 +7,7 @@ import scene
 def main():
     #pyglet.options['debug_gl'] = config.DEBUG_GL
 
-    window = common.director.init(resizable=True, vsync=config.VSYNC)
+    window = common.director.init(resizable=False, vsync=config.VSYNC)
 
     if config.NEW_PYGLET_LOOP:
         print "Using new pyglet loop."

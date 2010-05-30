@@ -13,3 +13,5 @@ http://www.losersjuegos.com.ar
 __version__ = "0.4.0"
 __author__ = "Hugo Ruscitti / Walter Velazquez"
 version = __version__
+
+import main
