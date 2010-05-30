@@ -10,6 +10,7 @@ DEBUG_GL = False
 
 
 NEW_PYGLET_LOOP = True
+RESIZABLE = False
 VSYNC = False
 PERSPECTIVE_FLOOR = True
 MOVE_WINDOW = False
