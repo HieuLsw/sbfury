@@ -41,7 +41,7 @@ class UIControl(cocos.layer.Layer):
             self.game.advance_level()
 
 class Messages(cocos.layer.Layer):
-    """Show text messages on screen."""
+    """Show text messages on screen like 'stage 1...' ."""
 
     def __init__(self, game):
         super(Messages, self).__init__()
@@ -62,20 +62,29 @@ class Messages(cocos.layer.Layer):
 
 
 class Game(cocos.scene.Scene):
+    """Representa la escena principal de juego.
+
+    Aquí se crean los personajes para iniciar el juego y los
+    enemigos.
+    """
 
     def __init__(self, level=1):
         super(Game, self).__init__()
         self.level = level
         self.ui = None
+
+        # Crea el atributo que permite desplegar mensajes.
         self.messages = Messages(self)
         self.add(self.messages, z=1)
 
+        # Crea el resto de los objetos.
         self._create_player_and_stage()
         self._create_enemies()
         self._create_uicontrol()
         self._show_stage_message()
 
     def _create_uicontrol(self):
+        "Genera un objeto que administra la barra para desarrolladores."
         if self.ui:
             self.remove(self.ui)
 
@@ -83,10 +92,12 @@ class Game(cocos.scene.Scene):
         self.add(self.ui)
 
     def _create_enemies(self):
+        "Genera los enemigos del escenario"
         self._create_enemy('fat', 300, 300)
         self._create_enemy('hannia', 250, 100)
 
     def _create_enemy(self, name, x, y):
+        "Crea un nuevo enemigo dentro del escenario."
         name_class = {
                 'fat': enemies.fat.Fat,
                 'hannia': enemies.hannia.Hannia,
@@ -115,6 +126,7 @@ class Game(cocos.scene.Scene):
         self.stage.collision_manager.add_player(shaolin_sprite)
 
     def advance_level(self):
+        "Avanza un nivel dentro del juego."
         self.level += 1
         #print self.children
         self.remove(self.stage)
@@ -123,10 +135,12 @@ class Game(cocos.scene.Scene):
         #self._show_stage_message()
 
         new_scene = scene.loading.Loading(self.level)
+        #new_scene = scene.menu.Menu()
         common.change_scene(new_scene, 
                 transition=cocos.scenes.transitions.FadeTransition)
 
     def _show_stage_message(self):
+        "Muestra un mensaje indicado el nivel que ha cargado."
         if self.level == FINAL_LEVEL:
             self.messages.show_message("Final stage")
         else:

@@ -4,26 +4,10 @@
 # Copyright 2008 - Hugo Ruscitti
 # License: GPLv3 (see http://www.gnu.org/licenses/gpl.html)
 
-from threading import Thread
-
 import cocos
 
 import common
 import scene
-
-
-class CreateGameThread(Thread):
-    """Load the Game scene in background to not freeze the game."""
-
-    def __init__(self, scene, level):
-        super(CreateGameThread, self).__init__()
-        self.scene = scene
-        self.level = level
-
-    def run(self):
-        game_scene = scene.game.Game(self.level)
-        self.scene.change_to_scene(game_scene)
-
 
 class Loading(cocos.scene.Scene):
     """Show a loading animation while load Game scene in a thread."""
@@ -31,10 +15,12 @@ class Loading(cocos.scene.Scene):
     def __init__(self, level):
         super(Loading, self).__init__()
         self.add(LoadingLayer(self))
-        self.thread = CreateGameThread(self, level)
-        self.thread.start()
+        self.level = level
+        self.schedule_interval(self.change_to_next_scene, 1)
 
-    def change_to_scene(self, new_scene):
+    def change_to_next_scene(self, dt):
+        self.unschedule(self.change_to_next_scene)
+        new_scene = scene.game.Game(self.level)
         common.change_scene(new_scene, 
                 transition=cocos.scenes.transitions.FadeTransition)
 
@@ -48,7 +34,7 @@ class LoadingLayer(cocos.layer.Layer):
         self._create_sprite()
 
     def _create_sprite(self):
-        animation = common.load_animation('loading.gif')
+        animation = common.load_image('wait.png')
         self.sprite = cocos.sprite.Sprite(animation)
         self.sprite.position = 320, 240
 
