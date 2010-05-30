@@ -9,10 +9,14 @@ def main():
 
     window = common.director.init(resizable=config.RESIZABLE, vsync=config.VSYNC)
 
+    if config.DEBUG:
+        first_scene = scene.game.Game()
+    else:
+        first_scene = scene.logo.Logo()
+
     if config.NEW_PYGLET_LOOP:
         print "Using new pyglet loop."
-
-        common.director.run(scene.logo.Logo())
+        common.director.run(first_scene)
     else:
         from pyglet.clock import tick
         print "Using old pyglet loop method."

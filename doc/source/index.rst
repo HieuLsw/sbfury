@@ -11,6 +11,7 @@ Contenido:
 .. toctree::
    :maxdepth: 2
 
+   escenas
 
 Indices and tables
 ==================
