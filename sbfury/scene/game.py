@@ -20,7 +20,10 @@ FINAL_LEVEL = 6
 
 
 class UIControl(cocos.layer.Layer):
-    """Front layer with tip for developers and beta testers."""
+    """Layer que contiene indicaciones para desarrolladores y beta testers.
+
+    Esta escribe en pantalla el mensaje "pulse F7" para avanzar de nivel.
+    """
 
     is_event_handler = True
 
@@ -41,7 +44,7 @@ class UIControl(cocos.layer.Layer):
             self.game.advance_level()
 
 class Messages(cocos.layer.Layer):
-    """Show text messages on screen like 'stage 1...' ."""
+    """Muestra mensajes en pantalla como 'stage 1' ... """
 
     def __init__(self, game):
         super(Messages, self).__init__()
@@ -110,6 +113,13 @@ class Game(cocos.scene.Scene):
         self.stage.collision_manager.add_enemy(enemy)
 
     def _create_player_and_stage(self):
+        """Genera al personaje principal y al objeto Stage.
+
+        Shaolin es el protagonista del juego, que se maneja
+        con el teclado. Mientras que Stage es uno de los
+        objetos principales de la escena, porque administra
+        colisiones y muestra el fondo de pantalla."""
+
         shaolin_sprite = shaolin.shaolin.Shaolin()
         control_layer = control.Control(shaolin_sprite)
 

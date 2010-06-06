@@ -10,7 +10,7 @@ def main():
     window = common.director.init(resizable=config.RESIZABLE, vsync=config.VSYNC)
 
     if config.DEBUG:
-        first_scene = scene.game.Game(level=3)
+        first_scene = scene.game.Game(level=1)
     else:
         first_scene = scene.logo.Logo()
 

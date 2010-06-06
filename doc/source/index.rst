@@ -13,6 +13,12 @@ Contenido:
 
    escenas
 
+
+.. automodule:: stage
+
+.. autoclass:: Stage
+    :members:
+
 Indices and tables
 ==================
 

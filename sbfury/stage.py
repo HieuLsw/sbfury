@@ -15,6 +15,12 @@ import collision
 
 
 class Stage(cocos.layer.Layer):
+    """Es un componente de la escena Game que muestra el escenario y adminitra colisiones.
+
+    Stage es uno de los componentes principales, porque conoce
+    al objeto que tiene que seguir la cámara, imprime el escenario
+    simulando un scroll horizontal y además gestiona colisiones.
+    """
 
     def __init__(self, number, object_to_follow):
         super(Stage, self).__init__()
@@ -137,10 +143,15 @@ class Stage(cocos.layer.Layer):
             self.layer_4.draw()
 
     def add_element(self, element):
-        """Append a sprite in main layer."""
+        """Agrega un elemento como un sprite o nodo al layer principal.
+
+        Este método se tiene que llamar con cualquier personaje
+        que se quiera insertar en el escenario, como un enemigo o
+        el protagonista."""
         self.main_layer.add(element)
 
     def _create_collision_manager(self):
+        "Genera el administrador de colisiones, que avisa a los personajes ante colisiones."
         self.collision_manager = collision.CollisionManager()
         self.add(self.collision_manager, z=1)
 

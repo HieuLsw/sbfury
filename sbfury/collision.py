@@ -17,6 +17,7 @@ class HitEffect(cocos.sprite.Sprite):
     """Show a impact effect for collisions."""
 
     def __init__(self, x, y):
+        print "Creating hit effect"
         image = common.load_image('effects/hit.png')
 
         r = randint(200, 255)
