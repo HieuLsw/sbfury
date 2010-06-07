@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Colisiones &mdash; sbfury v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '#',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="sbfury v0.1 documentation" href="index.html" />
+    <link rel="next" title="Stage" href="stage.html" />
+    <link rel="prev" title="Escenas" href="escenas.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="stage.html" title="Stage"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">sbfury v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="colisiones">
+<h1>Colisiones<a class="headerlink" href="#colisiones" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Durante el juego uno puede golpear a los enemigos y
+a su vez los enemigos nos pueden golpear. A este
+comportamiento se lo denomina colisiones. Y son las
+únicas interacciones entre personajes que existen.</p>
+<img alt="_images/collision_debug_on.png" src="_images/collision_debug_on.png" />
+<div class="section" id="collisionmanager">
+<h2>CollisionManager<a class="headerlink" href="#collisionmanager" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Hay una instancia de este objeto dentro de <tt class="docutils literal"><span class="pre">Stage</span></tt>, que
+a su vez es parte de <tt class="docutils literal"><span class="pre">Game</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">CollisionManager</span></tt> se encarga de detectar si los personajes
+se estan golpeando o no. Para ello tiene dos listas de personajes,
+una se utiliza para el protagonista y otra para los enemigos.</p>
+</div>
+<div class="section" id="como-se-genera-un-colision">
+<h2>¿Como se genera un colision?<a class="headerlink" href="#como-se-genera-un-colision" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El objeto <tt class="docutils literal"><span class="pre">CollisionManager</span></tt> en realidad se actualiza todo
+el tiempo buscando atributos en los personajes para determinar
+si existen colisiones o no.</p>
+<p>Cuando un objeto quiere emitir una colisión tienen que pasar
+dos cosas. Una es que el personaje esté en una de
+las listas del <tt class="docutils literal"><span class="pre">CollisionManager</span></tt>, cosa que se realiza
+con frecuencia cuando se genera el objeto:</p>
+<div class="highlight-python"><pre>new_enemy = EnemyExample()...
+self.stage.collision_manager.add_enemy(new_enemy)</pre>
+</div>
+<p>Lo segundo que tiene que hacer el personaje para emitir una
+colisión es llamar al método <tt class="docutils literal"><span class="pre">set_collision</span></tt> de la clase
+<tt class="docutils literal"><span class="pre">Sprite</span></tt>:</p>
+<dl class="method">
+<dt id="sprite.Sprite.set_collision">
+<tt class="descclassname">Sprite.</tt><tt class="descname">set_collision</tt><big>(</big><em>rect</em>, <em>force=1</em><big>)</big><a class="headerlink" href="#sprite.Sprite.set_collision" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Define un area de colision para emitir una colisión.</p>
+<dl class="docutils">
+<dt><cite>rect</cite>: tuple</dt>
+<dd>El area de colisión, relativa a donde se encuentra el personaje.</dd>
+<dt><cite>force</cite>: int</dt>
+<dd>Fuerza que imprime la colisión, puede ser 1, 2, 3 o 4 (como máximo).</dd>
+</dl>
+</dd></dl>
+
+<p>Este metodo produce un rectángulo que el <tt class="docutils literal"><span class="pre">CollisionManager</span></tt>
+va a detectar y con eso va a ver si existe un colisión con
+alguien mas.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Si quieres que los rectangulos de colision se vean
+en pantalla tienes que habilitar la variable <tt class="docutils literal"><span class="pre">DEBUG</span></tt> en
+el archivo <tt class="docutils literal"><span class="pre">config.py</span></tt></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Colisiones</a><ul>
+<li><a class="reference external" href="#collisionmanager">CollisionManager</a></li>
+<li><a class="reference external" href="#como-se-genera-un-colision">¿Como se genera un colision?</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Tema anterior</h4>
+            <p class="topless"><a href="escenas.html"
+                                  title="Capítulo anterior">Escenas</a></p>
+            <h4>Próximo tema</h4>
+            <p class="topless"><a href="stage.html"
+                                  title="Próximo capítulo">Stage</a></p>
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/colisiones.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="stage.html" title="Stage"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="escenas.html" title="Escenas"
+             >anterior</a> |</li>
+        <li><a href="index.html">sbfury v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Hugo Ruscitti.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

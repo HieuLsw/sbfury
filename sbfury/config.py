@@ -8,7 +8,7 @@
 # Use `False` for fast blits
 DEBUG_GL = False
 
-DEBUG = True
+DEBUG = False
 
 
 NEW_PYGLET_LOOP = True
