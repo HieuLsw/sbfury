@@ -22,6 +22,7 @@ class HitEffect(sprite.Sprite):
     def __init__(self, x, y):
         self.animation = animation.Animation("hits.png", 5, 0.05)
         super(HitEffect, self).__init__(must_be_updated=True)
+        self.image = self.animation.image
         self.position = x, y
 
     def update(self, dt):
@@ -67,7 +68,7 @@ class CollisionManager(cocos.layer.Layer):
                     a.on_collision_send(b)
 
                     if b.on_collision_receive(a, a.collision_force):
-                        self._create_collision_effect((b.x, b.y))
+                        self._create_collision_effect((a.x, a.y), a.flip)
 
                 elif self._get_collision(send=b, receive=a):
                     b.on_collision_send(a)
@@ -75,10 +76,16 @@ class CollisionManager(cocos.layer.Layer):
                     if a.on_collision_receive(b, b.collision_force):
                         self._create_collision_effect((a.x, a.y))
                     
-    def _create_collision_effect(self, (x, y)):
+    def _create_collision_effect(self, (x, y), flip):
         x += randint(-30, 30)
         y += randint(-20, 20)
-        self.add(HitEffect(x, y + 110))
+
+        if flip:
+            dx = -80
+        else:
+            dx = 90
+
+        self.add(HitEffect(x + dx, y + 80))
 
     def _get_collision(self, send, receive):
         """Checks collision between two sprites.
