@@ -35,3 +35,6 @@ def main():
             #window.clear()
             #draw()
             window.flip()
+
+if __name__ == "__main__":
+    main()
