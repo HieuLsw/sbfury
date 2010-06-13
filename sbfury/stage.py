@@ -5,7 +5,7 @@
 # License: GPLv3 (see http://www.gnu.org/licenses/gpl.html)
 
 import cocos
-import image
+import partial_image
 from cocos.actions import *
 
 import layer
@@ -73,21 +73,21 @@ class Stage(cocos.layer.Layer):
     def _create_layers(self, number):
         prefix = 'stages/%d/layer_' %(number)
 
-        ima = image.PartialImage(prefix + '3')
+        ima = partial_image.PartialImage(prefix + '3')
         self.layer_3 = layer.PartialImageLayer(ima, top=True)
 
-        ima = image.PartialImage(prefix + '2')
+        ima = partial_image.PartialImage(prefix + '2')
         self.layer_2 = layer.PartialImageLayer(ima, top=True)
 
-        ima = image.PartialImage(prefix + '1')
+        ima = partial_image.PartialImage(prefix + '1')
         self.layer_1 = layer.PartialImageLayer(ima, top=True)
 
         if config.PERSPECTIVE_FLOOR:
-            ima = image.PartialImage(prefix + '0')
+            ima = partial_image.PartialImage(prefix + '0')
             self.layer_0 = layer.PartialImageLayer3D(ima, -0, -13)
 
             try:
-                ima = image.PartialImage(prefix + '5')
+                ima = partial_image.PartialImage(prefix + '5')
                 self.extra_layer_1 = layer.PartialImageLayer3D(ima, -0, -40)
 
                 #ima = image.PartialImage(prefix + '5')
@@ -108,7 +108,7 @@ class Stage(cocos.layer.Layer):
                 pass
 
         else:
-            ima = image.PartialImage(prefix + '0')
+            ima = partial_image.PartialImage(prefix + '0')
             self.layer_0 = layer.PartialImageLayer(ima, -0, -42)
 
         self.main_layer = layer.OrderlyLayer()
@@ -123,7 +123,7 @@ class Stage(cocos.layer.Layer):
         self.add(self.main_layer)
 
         if config.SHOW_FRONT_LAYER:
-            ima = image.PartialImage(prefix + '4')
+            ima = partial_image.PartialImage(prefix + '4')
             self.layer_4 = layer.PartialImageLayer(ima, top=False)
             self.add(self.layer_4, z=1)
 
