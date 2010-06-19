@@ -16,6 +16,7 @@ Contenido:
    colisiones
    stage
    shaolin
+   sonidos
 
 
 Indices and tables
