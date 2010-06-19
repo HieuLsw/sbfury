@@ -8,7 +8,7 @@
 # Use `False` for fast blits
 DEBUG_GL = False
 
-DEBUG = False
+DEBUG = True
 
 
 NEW_PYGLET_LOOP = True
@@ -21,3 +21,4 @@ CAMERA_STEP = 20
 SHAOLIN_INITIAL_JUMP_SPEED = 12
 SHOW_COLLISION_BOXES = False
 SHOW_CONTROL_POINTS = False
+SOUNDS_ENABLED = True

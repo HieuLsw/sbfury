@@ -24,6 +24,7 @@ class HitEffect(sprite.Sprite):
         super(HitEffect, self).__init__(must_be_updated=True)
         self.image = self.animation.image
         self.position = x, y
+        common.sound.play('punch1')
 
     def update(self, dt):
         """Update animation state. Returns True if animation are done."""

@@ -11,6 +11,8 @@ from pyglet.gl import  *
 import cocos
 from cocos.director import director
 from cocos.scenes import *
+from sound import Sound
+
 
 
 def load_image(filename):
@@ -26,6 +28,12 @@ def load_image(filename):
 
     return pyglet.image.load(path).get_texture(rectangle=True)
 
+
+def load_sound(filename):
+    "Carga un sonido desde el directorio data"
+    dirname = os.path.abspath(os.path.dirname(__file__))
+    path = os.path.join(dirname, '..', 'data', filename)
+    return pyglet.media.load(path, streaming=False)
 
 def load_animation(filename):
     """Creates a animation from file
@@ -65,3 +73,7 @@ def fix_alpha():
 def in_range(value, min, max):
     """Evaluate if value are in (min, max)"""
     return min < value < max
+
+
+
+sound = Sound()
