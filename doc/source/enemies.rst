@@ -49,3 +49,13 @@ Luego, cada estado de la cadena tiene que hacer su tarea en un tiempo
 determinado por el ultimo argumento, y cuando termina tiene que llamar
 internamente a ``go_to_next_ai_state`` para seguir con el siguiente
 estado.
+
+
+Todos miran al shaolin
+----------------------
+
+Cuando se inicializa un enemigo dentro del método ``create_enemy`` de la
+escena ``Game``, se le pasa al nuevo enemigo la referencia del shaolin. Esto
+es útil porque permite a los enemigos conocer la posición del shaolin, tanto
+para realizar movimientos mas acertados como para observarlo todo el
+tiempo.

@@ -32,5 +32,12 @@ class Enemy(sprite.Sprite):
         next_state.start()
         self.set_state(next_state)
 
+    def update(self, dt):
+        self._state.update(dt)
+
+    def see_to_player(self):
+        "Mira en la direccion del shaolin, esto simula que el personaje no pierde de vista al protagonista."
+        self.flip = (self.shaolin.position[0] < self.position[0])
+
 import fat
 import hannia

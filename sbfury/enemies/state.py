@@ -8,8 +8,8 @@ from sprite import State
 import random
 
 
-
 class Stand(State):
+    "El personaje parado en su sitio. Solo se suele utilizar como clase abstracta."
 
     def __init__(self, target):
         State.__init__(self, target)
@@ -33,6 +33,7 @@ class Stand(State):
 
 
 class Wait(Stand):
+    "Espera un numero determinado de segundos."
 
     def __init__(self, target, seconds):
         State.__init__(self, target)
@@ -46,11 +47,13 @@ class Wait(Stand):
     def update(self, dt):
         self.dt += dt
         self.target.update_animation(dt)
+        self.target.see_to_player()
 
         if self.dt > self.seconds_to_wait:
             self.target.go_to_next_ai_state()
 
 class WalkRandom(Stand):
+    "Camina en cualquier dirección al azar."
 
     def __init__(self, target, seconds):
         Stand.__init__(self, target)
