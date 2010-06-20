@@ -2,9 +2,10 @@ import sprite
 
 class Enemy(sprite.Sprite):
 
-    def __init__(self, must_be_updated=False):
+    def __init__(self, shaolin, must_be_updated=False):
         super(Enemy, self).__init__(must_be_updated=must_be_updated)
         self.flip = True
+        self.shaolin = shaolin
 
     def set_ai_states(self, ai_states):
         "Define la rueda de estados que tiene que seguir el personaje (AI simple)."

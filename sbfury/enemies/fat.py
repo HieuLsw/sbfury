@@ -20,8 +20,8 @@ import shadow
 
 class Fat(enemies.Enemy):
 
-    def __init__(self, x=400, y=200):
-        super(Fat, self).__init__(must_be_updated=True)
+    def __init__(self, shaolin, x=400, y=200):
+        super(Fat, self).__init__(shaolin, must_be_updated=True)
         self.position = x, y
         self._load_animations()
         self.set_ai_states([state.Wait(self, 4), state.Wait(self, 4)])

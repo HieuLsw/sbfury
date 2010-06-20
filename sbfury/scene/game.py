@@ -107,7 +107,7 @@ class Game(cocos.scene.Scene):
                 }
 
         class_of_enemy = name_class[name]
-        enemy = class_of_enemy(x, y)
+        enemy = class_of_enemy(self.shaolin, x, y)
         self.stage.add_element(enemy)
         self.stage.add_element(enemy.shadow)
         self.stage.collision_manager.add_enemy(enemy)
@@ -134,6 +134,7 @@ class Game(cocos.scene.Scene):
 
         # Add player to collision manager
         self.stage.collision_manager.add_player(shaolin_sprite)
+        self.shaolin = shaolin_sprite
 
     def advance_level(self):
         "Avanza un nivel dentro del juego."
