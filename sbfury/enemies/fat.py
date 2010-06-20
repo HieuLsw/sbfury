@@ -24,7 +24,8 @@ class Fat(enemies.Enemy):
         super(Fat, self).__init__(must_be_updated=True)
         self.position = x, y
         self._load_animations()
-        self.set_state(state.Stand(self))
+        self.set_ai_states([state.Wait(self, 4), state.Wait(self, 4)])
+        self.go_to_next_ai_state()
         self.shadow = shadow.Shadow()
         self.move(0, 0)
 

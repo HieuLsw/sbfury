@@ -5,6 +5,8 @@
 # License: GPLv3 (see http://www.gnu.org/licenses/gpl.html)
 
 from sprite import State
+import random
+
 
 
 class Stand(State):
@@ -30,17 +32,47 @@ class Stand(State):
         return True
 
 
-class Walk(Stand):
+class Wait(Stand):
 
-    def __init__(self, target):
-        Stand.__init__(self, target)
-        target.set_animation('walk')
+    def __init__(self, target, seconds):
+        State.__init__(self, target)
+        self.seconds_to_wait = seconds
+
+    def start(self):
+        self.target.set_animation('stand')
+        self.dt = 0
+        print self.target, "Esperando:", self.seconds_to_wait, "segundos"
 
     def update(self, dt):
+        self.dt += dt
         self.target.update_animation(dt)
+
+        if self.dt > self.seconds_to_wait:
+            self.target.go_to_next_ai_state()
+
+class WalkRandom(Stand):
+
+    def __init__(self, target, seconds):
+        Stand.__init__(self, target)
+        self.seconds = seconds
+
+    def start(self):
+        self.dt = 0
+        self.target.set_animation('walk')
+        self.dx = random.choice([-0.25, 0.1, 0.25])
+        self.dy = random.choice([-0.25, 0.1, 0.25])
+
+    def update(self, dt):
+        self.target.move(self.dx * dt, self.dy * dt)
+        self.dt += dt
+        self.target.update_animation(dt)
+
+        if self.dt > self.seconds:
+            self.target.go_to_next_ai_state()
 
 
 class HitStand(State):
+    "Recibe un golpe simple."
 
     def __init__(self, target, collision_force):
         State.__init__(self, target)
@@ -52,10 +84,13 @@ class HitStand(State):
 
     def update(self, dt):
         if self.target.update_animation(dt):
-            self.target.set_state(Stand(self.target))
+            "Si termina de sufrir el golpe reinicia la rueda de estados AI."
+            self.target.reset_ai_state()
+            self.target.go_to_next_ai_state()
 
 
 class HardHit(State):
+    "Cuando lo golpean fuerte."
 
     def __init__(self, target):
         State.__init__(self, target)
@@ -91,6 +126,7 @@ class HardHit(State):
                 self.target.set_frame(3)
 
 class Ground(State):
+    "Cuando el personaje permanece en el suelo"
 
     def __init__(self, target):
         State.__init__(self, target)
@@ -106,6 +142,7 @@ class Ground(State):
 
 
 class GroundToStand(State):
+    "Representa al enemigo cuando se levanta del suelo."
 
     def __init__(self, target):
         State.__init__(self, target)
@@ -113,4 +150,6 @@ class GroundToStand(State):
     
     def update(self, dt):
         if self.target.update_animation(dt):
-            self.target.set_state(Stand(self.target))
+            "Si termina de sufrir el golpe reinicia la rueda de estados AI."
+            self.target.reset_ai_state()
+            self.target.go_to_next_ai_state()
