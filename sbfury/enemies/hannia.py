@@ -24,7 +24,10 @@ class Hannia(enemies.Enemy):
         super(Hannia, self).__init__(shaolin, must_be_updated=True)
         self.position = x, y
         self._load_animations()
-        self.set_ai_states([state.Wait(self, 1), state.WalkRandom(self, 1)])
+        self.set_ai_states(
+                [state.Wait(self, 1), state.PunchToPlayerIfCloser(self)]
+                #state.WalkRandom(self, 1)])
+                )
         self.go_to_next_ai_state()
         self.shadow = shadow.Shadow()
         self.move(0, 0)
@@ -35,6 +38,7 @@ class Hannia(enemies.Enemy):
         self._animations = {
                 'stand': Animation('enemies/hannia/stand.png', 1),
                 'hitstand1': Animation('enemies/hannia/hitstand1.png', 1),
+                'attack': Animation('enemies/hannia/hitstand1.png', 1),
                 'hitstand2': Animation('enemies/hannia/hitstand2.png', 1),
                 'hardhit': Animation('enemies/hannia/hardhit.png', 4),
                 'ground': Animation('enemies/hannia/ground.png', 1),

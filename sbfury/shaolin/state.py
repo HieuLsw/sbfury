@@ -35,6 +35,10 @@ class Stand(State):
     def update(self, dt):
         self.target.update_animation(dt)
 
+    def on_collision_receive(self, other_sprite, force):
+        self.target.set_state(HitStand(self.target, force))
+        return True
+
 
 class Walk(State):
 
@@ -75,6 +79,10 @@ class Walk(State):
         if not map.motion:
             self.target.set_state(Stand(self.target))
 
+    def on_collision_receive(self, other_sprite, force):
+        self.target.set_state(HitStand(self.target, force))
+        return True
+
 class Run(Walk):
 
     def __init__(self, target, map):
@@ -97,6 +105,10 @@ class Run(Walk):
             self.target.set_state(AttackWhenRun(self.target, self.dx * 2))
         elif map.jump:
             self.target.set_state(JumpWalk(self.target, self.dx * 2))
+
+    def on_collision_receive(self, other_sprite, force):
+        self.target.set_state(HitStand(self.target, force))
+        return True
 
 class AttackWhenRun(State):
 
@@ -275,3 +287,17 @@ class AttackJumpWalk(AbstractJump):
             self.target.set_collision(None)
 
 
+class HitStand(State):
+    "Recibe un golpe simple."
+
+    def __init__(self, target, collision_force):
+        State.__init__(self, target)
+
+        if collision_force in [1, 3]:
+            target.set_animation('hitstand1')
+        else:
+            target.set_animation('hitstand2')
+
+    def update(self, dt):
+        if self.target.update_animation(dt):
+            self.target.set_state(Stand(self.target))

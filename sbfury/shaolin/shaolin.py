@@ -58,7 +58,6 @@ class Shaolin(sprite.Sprite):
                 'throw':    Animation('shaolin/throw.png', 3),
                 'walk':     Animation('shaolin/walk.png', 4),
                 }
-    
 
     def on_control_press(self, map):
         self._state.on_control_press(map)
@@ -66,6 +65,9 @@ class Shaolin(sprite.Sprite):
     def on_control_release(self, map):
         self._state.on_control_release(map)
 
+    def on_collision_receive(self, other_sprite, force):
+        """Returns True if collision do something."""
+        return self._state.on_collision_receive(other_sprite, force)
 
 if __name__ == '__main__':
     import control

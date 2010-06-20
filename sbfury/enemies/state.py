@@ -7,6 +7,7 @@
 from sprite import State
 import random
 
+COLLISION_RECT_ATTACK = (0, 80, 90, 20)
 
 class Stand(State):
     "El personaje parado en su sitio. Solo se suele utilizar como clase abstracta."
@@ -42,7 +43,6 @@ class Wait(Stand):
     def start(self):
         self.target.set_animation('stand')
         self.dt = 0
-        print self.target, "Esperando:", self.seconds_to_wait, "segundos"
 
     def update(self, dt):
         self.dt += dt
@@ -72,6 +72,35 @@ class WalkRandom(Stand):
 
         if self.dt > self.seconds:
             self.target.go_to_next_ai_state()
+
+class PunchToPlayerIfCloser(Stand):
+    "Intenta pegarle al protagonista solamente si esta cerca."
+
+    def __init__(self, target):
+        Stand.__init__(self, target)
+
+    def start(self):
+        pass
+
+    def update(self, dt):
+        if self.target.is_closer_to(self.target.shaolin):
+            self.target.set_state(Attack(self.target))
+        else:
+            self.target.go_to_next_ai_state()
+
+
+class Attack(State):
+    "Realiza un golpe intentando lastimar al protagonista."
+
+    def __init__(self, target):
+        State.__init__(self, target)
+        self.target.set_animation('attack')
+        self.target.set_collision(COLLISION_RECT_ATTACK, 1)
+
+    def update(self, dt):
+        if self.target.update_animation(dt):
+            self.target.go_to_next_ai_state()
+            self.target.set_collision(None)
 
 
 class HitStand(State):

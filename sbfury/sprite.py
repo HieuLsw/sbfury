@@ -132,6 +132,19 @@ class Sprite(cocos.sprite.Sprite):
         y += self.y + h +  self.distance_to_floor
         return x, y, w, h
 
+    def is_closer_to(self, other_sprite):
+        """Determina si dos sprites estan lo suficientemente cerca para pegarse.
+
+        Este método se utiliza desde alguno de los estados de los enemigos. Porque
+        los enemigos necesitan saber si estan cerca del enemigo antes
+        de realizar un golpe. Si el enemigo esta muy lejos directamente no golpea.
+        """
+        x0, y0 = self.position
+        x1, y1 = other_sprite.position
+
+        if abs(x0 - x1) < 120 and abs(y0 - y1) < 30:
+            return True
+
     def move(self, dx, dy):
         "Mueve al personaje pero respetando los límites del escenario."
         x, y = self.position
@@ -170,3 +183,5 @@ if __name__ == '__main__':
     layer.add(sprite)
 
     common.director.run(scene)
+
+

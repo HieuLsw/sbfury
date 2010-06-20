@@ -70,12 +70,13 @@ class CollisionManager(cocos.layer.Layer):
 
                     if b.on_collision_receive(a, a.collision_force):
                         self._create_collision_effect((a.x, a.y), a.flip)
-
                 elif self._get_collision(send=b, receive=a):
+
                     b.on_collision_send(a)
 
                     if a.on_collision_receive(b, b.collision_force):
-                        self._create_collision_effect((a.x, a.y))
+                        self._create_collision_effect((a.x, a.y), a.flip)
+
                     
     def _create_collision_effect(self, (x, y), flip):
         x += randint(-30, 30)
