@@ -28,6 +28,8 @@ class Shaolin(sprite.Sprite):
         self.set_state(state.Stand(self))
         self.shadow = shadow.Shadow()
         self.move(0, 0)
+        self.name = 'shaolin'
+        self.energy = 100
 
     def set_animation(self, id):
         self.animation = self._animations[id]

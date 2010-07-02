@@ -15,6 +15,7 @@ import control
 import shaolin
 import enemies
 import scene
+import energy
 
 FINAL_LEVEL = 6
 
@@ -122,6 +123,9 @@ class Game(cocos.scene.Scene):
 
         shaolin_sprite = shaolin.shaolin.Shaolin()
         control_layer = control.Control(shaolin_sprite)
+
+        # Genera el indicador de energia
+        self.messages.add(energy.EnergyIndicator(shaolin_sprite, 10, 470))
 
         # Create Stage
         self.stage = stage.Stage(self.level, object_to_follow=shaolin_sprite)

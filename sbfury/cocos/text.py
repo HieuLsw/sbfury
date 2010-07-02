@@ -78,7 +78,7 @@ class Label(TextElement):
     of being of a CocosNode
     '''
     klass = pyglet.text.Label
-    
+
     
     
 class HTMLLabel(TextElement):

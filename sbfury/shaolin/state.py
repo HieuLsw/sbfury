@@ -298,6 +298,8 @@ class HitStand(State):
         else:
             target.set_animation('hitstand2')
 
+        target.energy -= collision_force * 4
+
     def update(self, dt):
         if self.target.update_animation(dt):
             self.target.set_state(Stand(self.target))
